@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">LSC</string>
+    <string name="iniciar_sesion">Inicio de Sesión</string>
+    <string name="registro">Registro</string>
+    <string name="entry_email">Escriba su dirección de correo electrónico</string>
+    <string name="entry_password">Ingrese su contraseña</string>
+    <string name="entry_password_again">Ingrese su contraseña nuevamente</string>
+    <string name="welcome">Bienvenido</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

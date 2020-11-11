@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "283591970026",
+    "firebase_url": "https://info-ganaderia-col.firebaseio.com",
+    "project_id": "info-ganaderia-col",
+    "storage_bucket": "info-ganaderia-col.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:283591970026:android:4c58f9dd24ce3eddeb5b93",
+        "android_client_info": {
+          "package_name": "com.example.iniciosesin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "283591970026-mm3u331038bonok42qp6nt355inn2kjn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsdz8f0ZENWXmnAOWSOG1aFG7gktbM3MU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "283591970026-mm3u331038bonok42qp6nt355inn2kjn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
