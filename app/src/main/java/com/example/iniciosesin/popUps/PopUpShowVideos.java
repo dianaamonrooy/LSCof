@@ -42,7 +42,7 @@ public class PopUpShowVideos extends AppCompatActivity {
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         int width=dm.widthPixels;
         int height=dm.heightPixels;
-        getWindow().setLayout((int)(width*0.7f),(int)(height*.5));
+        getWindow().setLayout((int)(width*0.8f),(int)(height*.4));
         WindowManager.LayoutParams params=getWindow().getAttributes();
         params.gravity = Gravity.CENTER;
         params.x=0;
@@ -58,6 +58,16 @@ public class PopUpShowVideos extends AppCompatActivity {
                 // whenever data at this location is updated.
                 if (dataSnapshot.exists()) {
                     url = dataSnapshot.child("url").getValue().toString();
+                    MediaController mediaController = new MediaController(PopUpShowVideos.this);
+                    video = findViewById(R.id.video);
+                    video.setMediaController(mediaController);
+                    mediaController.setAnchorView(video);
+                    Uri uri = Uri.parse(url);
+                    video.setVideoURI(uri);
+                    video.requestFocus();
+                    video.setOnPreparedListener(mediaPlayer -> video.start());
+                    //video.start();
+
 
 
 
@@ -73,6 +83,8 @@ public class PopUpShowVideos extends AppCompatActivity {
                 Log.w("Error", "Failed to read value.", error.toException());
             }
         });
+
+
 
         /*MediaController mediaController = new MediaController(getApplicationContext());
         video = findViewById(R.id.video);

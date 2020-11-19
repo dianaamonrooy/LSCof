@@ -3,15 +3,21 @@ package com.example.iniciosesin.actividades;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.PixelFormat;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
 import android.widget.MediaController;
@@ -50,6 +56,9 @@ public class Verbos extends AppCompatActivity {
     private String location;
     private TableLayout tableLayout;
     private ArrayList<TableRow> listaTableRows = new ArrayList<TableRow>();
+    private WindowManager windowManager2;
+    private WindowManager.LayoutParams params;
+    private String url;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -191,7 +200,7 @@ public class Verbos extends AppCompatActivity {
                     video.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
                         public void onSuccess(Uri uri) {
-                            Toast.makeText(getApplicationContext(), uri.toString(), Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(getApplicationContext(), uri.toString(), Toast.LENGTH_SHORT).show();
                             FirebaseDatabase database1 = FirebaseDatabase.getInstance();
                             StorageReference mStorageRef1;
                             FirebaseAuth myAuth1 = FirebaseAuth.getInstance();
@@ -203,6 +212,7 @@ public class Verbos extends AppCompatActivity {
 
                     });
                     openPopUp();
+                    //showCustomPopupMenu();
 
 
 
@@ -245,6 +255,38 @@ public class Verbos extends AppCompatActivity {
 
     public void openPopUp() {
         startActivity(new Intent(getApplicationContext(), PopUpShowVideos.class));
+    }
+    private void showCustomPopupMenu() {
+        mStorageRef = FirebaseStorage.getInstance().getReference();
+        myRef = database.getReference().child(myAuth.getCurrentUser().getUid().toString());
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                if (dataSnapshot.exists()) {
+                    url = dataSnapshot.child("url").getValue().toString();
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w("Error", "Failed to read value.", error.toException());
+            }
+        });
+        final Dialog dialog = new Dialog(Verbos.this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.activity_verbos);
+        dialog.show();
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams(
+                WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
+        lp.copyFrom(dialog.getWindow().getAttributes());
+        dialog.getWindow().setAttributes(lp);
+        final VideoView videoview = (VideoView) dialog.findViewById(R.id.video);
+
+        Uri uri = Uri.parse(url);
+        videoview.setVideoURI(uri);
+        videoview.start();
     }
 
 

@@ -3,6 +3,7 @@
     package="com.example.iniciosesin">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
 
     <application
         android:allowBackup="true"
@@ -13,7 +14,9 @@
         android:theme="@style/Theme.InicioSesión">
         <activity android:name=".popUps.PopUpShowVideos"
             android:theme="@style/Theme.InicioSesión.popMe"
-            ></activity>
+            >
+
+        </activity>
         <activity android:name=".Trial" />
         <activity android:name=".actividades.TabbedActivity" />
         <activity android:name=".actividades.Verbos" />
