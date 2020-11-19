@@ -2,6 +2,7 @@ package com.example.iniciosesin.popUps;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -65,8 +66,14 @@ public class PopUpShowVideos extends AppCompatActivity {
                     Uri uri = Uri.parse(url);
                     video.setVideoURI(uri);
                     video.requestFocus();
-                    video.setOnPreparedListener(mediaPlayer -> video.start());
-                    //video.start();
+                    video.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                        @Override
+                        public void onPrepared(MediaPlayer mp) {
+                            mp.setLooping(true);
+                        }
+                    });
+                    //video.setOnPreparedListener(mediaPlayer -> video.start());
+                    video.start();
 
                 }
 
