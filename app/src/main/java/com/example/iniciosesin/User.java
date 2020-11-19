@@ -1,12 +1,13 @@
 package com.example.iniciosesin;
 
 public class User {
+
     private String Id;
     private String email;
     private String date;
     private String location;
     private String saludo;
-    
+
 
     public String getId() {
         return Id;

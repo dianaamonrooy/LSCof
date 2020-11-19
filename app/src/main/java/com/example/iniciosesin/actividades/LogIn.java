@@ -22,7 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Calendar;
 import java.util.Date;
-
+//comentario de prueba
 public class LogIn extends AppCompatActivity {
     private EditText emailEdit;
     private EditText passwordEdit;
