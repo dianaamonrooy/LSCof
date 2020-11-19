@@ -127,22 +127,28 @@ public class LSC extends Fragment {
         ref.listAll().addOnSuccessListener(new OnSuccessListener<ListResult>() {
             @Override
             public void onSuccess(ListResult listResult) {
-                int numeroTableRows;
-                if (listResult.getPrefixes().size() % 3 == 0) {
-                    numeroTableRows = listResult.getPrefixes().size() / 3;
-                } else {
-                    numeroTableRows = listResult.getPrefixes().size() / 3 + 1;
+                if (tableLayout.getChildCount()<=0){
+
+                    int numeroTableRows;
+                    if (listResult.getPrefixes().size() % 3 == 0) {
+                        numeroTableRows = listResult.getPrefixes().size() / 3;
+                    } else {
+                        numeroTableRows = listResult.getPrefixes().size() / 3 + 1;
+                    }
+
+                    for (int i = 1; numeroTableRows >= i; i++) {
+                        TableRow tableRow = new TableRow(getActivity().getApplicationContext());
+                        tableRow.setId(i);
+                        tableRow.setLayoutParams(new TableRow.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+                        tableRow.setGravity(Gravity.CENTER);
+                        tableLayout.addView(tableRow);
+
+                    }
+                    showFolders(listResult, tableLayout, vista);
+
+
                 }
 
-                for (int i = 1; numeroTableRows >= i; i++) {
-                    TableRow tableRow = new TableRow(getActivity().getApplicationContext());
-                    tableRow.setId(i);
-                    tableRow.setLayoutParams(new TableRow.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-                    tableRow.setGravity(Gravity.CENTER);
-                    tableLayout.addView(tableRow);
-
-                }
-                showFolders(listResult, tableLayout, vista);
 
 
             }

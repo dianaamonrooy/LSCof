@@ -116,23 +116,26 @@ public class Verbos extends AppCompatActivity {
         ref.listAll().addOnSuccessListener(new OnSuccessListener<ListResult>() {
             @Override
             public void onSuccess(ListResult listResult) {
-                int numeroTableRows;
-                if (listResult.getItems().size() % 3 == 0) {
-                    numeroTableRows = listResult.getItems().size() / 3;
-                } else {
-                    numeroTableRows = listResult.getItems().size() / 3 + 1;
+                if (tableLayout.getChildCount()==0){
+                    int numeroTableRows;
+                    if (listResult.getItems().size() % 3 == 0) {
+                        numeroTableRows = listResult.getItems().size() / 3;
+                    } else {
+                        numeroTableRows = listResult.getItems().size() / 3 + 1;
+                    }
+
+                    for (int i = 1; numeroTableRows >= i; i++) {
+                        TableRow tableRow = new TableRow(getApplicationContext());
+                        tableRow.setId(i + 9876);
+                        listaTableRows.add(tableRow);
+                        tableRow.setLayoutParams(new TableRow.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+                        tableRow.setGravity(Gravity.CENTER);
+                        tableLayout.addView(tableRow);
+
+                    }
+                    showFolders(listResult, tableLayout, location);
                 }
 
-                for (int i = 1; numeroTableRows >= i; i++) {
-                    TableRow tableRow = new TableRow(getApplicationContext());
-                    tableRow.setId(i + 9876);
-                    listaTableRows.add(tableRow);
-                    tableRow.setLayoutParams(new TableRow.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-                    tableRow.setGravity(Gravity.CENTER);
-                    tableLayout.addView(tableRow);
-
-                }
-                showFolders(listResult, tableLayout, location);
 
 
             }
@@ -179,8 +182,10 @@ public class Verbos extends AppCompatActivity {
                 public void onClick(View v) {
                     myAuth.getCurrentUser();
                     myRef = database.getReference().child(myAuth.getCurrentUser().getUid().toString());
+                    //esto se debe borrar luego porque es una prueba
                     DatabaseReference reff=database.getReference().child(myAuth.getCurrentUser().getUid().toString()).child("url");
                     reff.setValue("hi");
+                    // hasta aquí
 
 
                     video.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
@@ -194,17 +199,10 @@ public class Verbos extends AppCompatActivity {
                             myRef1 = database1.getReference().child(myAuth1.getCurrentUser().getUid().toString());
 
                             myRef1.child("url").setValue(uri.toString());
-                            openPopUp();
-
-
-
-                            //myRef.child("url").setValue(uri.toString());
-
-
-
                         }
 
                     });
+                    openPopUp();
 
 
 
