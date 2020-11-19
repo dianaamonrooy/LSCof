@@ -42,7 +42,7 @@ public class PopUpShowVideos extends AppCompatActivity {
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         int width=dm.widthPixels;
         int height=dm.heightPixels;
-        getWindow().setLayout((int)(width*0.8f),(int)(height*.4));
+        getWindow().setLayout((int)(width*0.8f),(int)(height*.3));
         WindowManager.LayoutParams params=getWindow().getAttributes();
         params.gravity = Gravity.CENTER;
         params.x=0;
@@ -68,10 +68,6 @@ public class PopUpShowVideos extends AppCompatActivity {
                     video.setOnPreparedListener(mediaPlayer -> video.start());
                     //video.start();
 
-
-
-
-
                 }
 
                 //Log.d("Éxito", "Value is: " + value);
@@ -86,13 +82,7 @@ public class PopUpShowVideos extends AppCompatActivity {
 
 
 
-        /*MediaController mediaController = new MediaController(getApplicationContext());
-        video = findViewById(R.id.video);
-        video.setMediaController(mediaController);
-        mediaController.setAnchorView(video);
-        Uri uri = Uri.parse(url);
-        video.setVideoURI(uri);
-        video.start();*/
+
 
 
 

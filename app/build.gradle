@@ -39,9 +39,12 @@ dependencies {
     implementation 'com.google.firebase:firebase-storage:19.2.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     //added
-    implementation 'pub.hanks:smallbang:1.2.2'
-    implementation 'com.ogaclejapan.arclayout:library:1.1.0@aar'
+    implementation 'pub.hanks:smallbang:1.2.2' //no se usa
+    implementation 'com.ogaclejapan.arclayout:library:1.1.0@aar' //no se usa
     implementation 'com.github.takusemba:spotlight:1.0.1'
+    implementation( 'com.github.thekhaeng:pushdown-anim-click:1.1.1' ){
+        exclude group: 'com.android.support'
+    }
     //
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
