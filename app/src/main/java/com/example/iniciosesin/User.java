@@ -5,6 +5,8 @@ public class User {
     private String email;
     private String date;
     private String location;
+    private String saludo;
+    
 
     public String getId() {
         return Id;
