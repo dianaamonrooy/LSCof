@@ -38,6 +38,11 @@ dependencies {
     implementation 'com.google.firebase:firebase-database:19.5.1'
     implementation 'com.google.firebase:firebase-storage:19.2.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    //added
+    implementation 'pub.hanks:smallbang:1.2.2'
+    implementation 'com.ogaclejapan.arclayout:library:1.1.0@aar'
+    implementation 'com.github.takusemba:spotlight:1.0.1'
+    //
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'

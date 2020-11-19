@@ -99,7 +99,7 @@ public class LogIn extends AppCompatActivity {
     }
     public void writeDatabase() {
         Date logInDate = Calendar.getInstance().getTime();
-        User usuario = new User(mAuth.getUid().toString(), mAuth.getCurrentUser().getEmail(), logInDate.toString(),"location");
+        User usuario = new User(mAuth.getUid().toString(), mAuth.getCurrentUser().getEmail(), logInDate.toString(),"location", "aprende_practica", "url");
         myRef = database.getReference(usuario.getId());
         myRef.setValue(usuario);
 

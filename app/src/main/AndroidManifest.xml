@@ -11,8 +11,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.InicioSesión">
-        <activity android:name=".actividades.TabbedActivity"></activity>
-        <activity android:name=".actividades.Verbos"></activity>
+        <activity android:name=".popUps.PopUpShowVideos"
+            android:theme="@style/Theme.InicioSesión.popMe"
+            ></activity>
+        <activity android:name=".Trial" />
+        <activity android:name=".actividades.TabbedActivity" />
+        <activity android:name=".actividades.Verbos" />
         <activity android:name=".actividades.Aprende" />
         <activity android:name=".NoSeUsan.InfoUser" />
         <activity android:name=".NoSeUsan.PaginaPrincipalUsuario" />
