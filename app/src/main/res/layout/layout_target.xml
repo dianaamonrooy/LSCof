@@ -31,7 +31,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/ovalo"
-            android:onClick="practica"
             android:text="Practica"
             android:textColor="@drawable/button_text_color_practica"
             app:layout_constraintBottom_toBottomOf="parent"

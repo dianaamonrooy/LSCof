@@ -89,5 +89,7 @@ public class TabbedActivity extends AppCompatActivity {
         myAuth.getCurrentUser();
         myRef = database.getReference().child(myAuth.getCurrentUser().getUid().toString());
         myRef.child("aprende_practica").setValue("Practica");
+
+
     }
 }

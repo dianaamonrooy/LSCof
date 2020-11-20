@@ -39,6 +39,7 @@ import com.takusemba.spotlight.CustomTarget;
 import com.takusemba.spotlight.OnSpotlightEndedListener;
 import com.takusemba.spotlight.OnSpotlightStartedListener;
 import com.takusemba.spotlight.Spotlight;
+import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -127,7 +128,7 @@ public class LSC extends Fragment {
         ref.listAll().addOnSuccessListener(new OnSuccessListener<ListResult>() {
             @Override
             public void onSuccess(ListResult listResult) {
-                if (tableLayout.getChildCount()<=0){
+                if (tableLayout.getChildCount() <= 0) {
 
                     int numeroTableRows;
                     if (listResult.getPrefixes().size() % 3 == 0) {
@@ -148,7 +149,6 @@ public class LSC extends Fragment {
 
 
                 }
-
 
 
             }
@@ -215,16 +215,16 @@ public class LSC extends Fragment {
                                 @Override
                                 public void onStarted() {
                                     LinearLayout linearLayout = new LinearLayout(getActivity().getApplicationContext());
-                                    Button aprende_boton=vista2.findViewById(R.id.aprende_boton);
-                                    Button practica_boton=vista2.findViewById(R.id.practica_boton);
+                                    Button aprende_boton = vista2.findViewById(R.id.aprende_boton);
+                                    Button practica_boton = vista2.findViewById(R.id.practica_boton);
 
                                     ConstraintLayout.LayoutParams paramsAprende = (ConstraintLayout.LayoutParams) aprende_boton.getLayoutParams();
-                                    paramsAprende.leftMargin=(int)botonCarpeta.getX()-20;
-                                    paramsAprende.topMargin=(int) botonCarpeta.getY()-20;
+                                    paramsAprende.leftMargin = (int) botonCarpeta.getX() - 20;
+                                    paramsAprende.topMargin = (int) botonCarpeta.getY() - 20;
 
                                     ConstraintLayout.LayoutParams paramsPractica = (ConstraintLayout.LayoutParams) practica_boton.getLayoutParams();
-                                    paramsPractica.leftMargin=(int)botonCarpeta.getX()-20;
-                                    paramsPractica.topMargin=(int) botonCarpeta.getY()-40;
+                                    paramsPractica.leftMargin = (int) botonCarpeta.getX() - 20;
+                                    paramsPractica.topMargin = (int) botonCarpeta.getY() - 40;
 
 
                                     aprende_boton.setLayoutParams(paramsAprende);
@@ -242,25 +242,6 @@ public class LSC extends Fragment {
                                 }
                             })
                             .start();
-
-
-                    //startActivity(new Intent(getActivity().getApplicationContext(), Trial.class));
-                    /*AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage("¿Qué deseas hacer?");
-                    builder.setPositiveButton(R.string.aprende, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            // User clicked OK button
-                            startActivity(new Intent(getActivity().getApplicationContext(), Verbos.class));
-                        }
-                    });
-                    builder.setNegativeButton(R.string.practica, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            // User cancelled the dialog
-                            startActivity(new Intent(getActivity().getApplicationContext(), Verbos.class));
-                        }
-                    }).show();
-                    //startActivity(new Intent(getActivity().getApplicationContext(), Verbos.class));
-                    // AlertDialog dialog = builder.create();*/
 
                 }
             });
@@ -299,10 +280,8 @@ public class LSC extends Fragment {
         }
 
     }
-    public void aprende_boton(View view){
-        startActivity(new Intent(getActivity().getApplicationContext(),Verbos.class));
 
-    }
+
 
 
 }

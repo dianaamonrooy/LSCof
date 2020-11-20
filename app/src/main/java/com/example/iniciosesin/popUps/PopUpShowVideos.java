@@ -66,14 +66,26 @@ public class PopUpShowVideos extends AppCompatActivity {
                     Uri uri = Uri.parse(url);
                     video.setVideoURI(uri);
                     video.requestFocus();
+
                     video.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                         @Override
                         public void onPrepared(MediaPlayer mp) {
                             mp.setLooping(true);
+                            video.start();
+                        }
+                    });
+                    video.setOnErrorListener(new MediaPlayer.OnErrorListener() {
+                        @Override
+                        public boolean onError(MediaPlayer mp, int what, int extra) {
+                            Log.d("video", "setOnErrorListener ");
+                            return true;
                         }
                     });
                     //video.setOnPreparedListener(mediaPlayer -> video.start());
-                    video.start();
+
+
+
+
 
                 }
 
