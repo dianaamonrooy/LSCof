@@ -1,16 +1,16 @@
 package com.example.iniciosesin.actividades;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.TableLayout;
-import android.widget.Toast;
 
 import com.example.iniciosesin.ControladorTab.PagerController;
-import com.example.iniciosesin.NoSeUsan.PageChanger;
+import com.example.iniciosesin.NoSeUsan.BasesSwipe.PageChanger;
 import com.example.iniciosesin.R;
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
@@ -53,6 +53,8 @@ public class TabbedActivity extends AppCompatActivity {
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
+                int tabIconColor = ContextCompat.getColor(getApplicationContext(), R.color.white);
+                tab.getIcon().setColorFilter(tabIconColor, PorterDuff.Mode.SRC_IN);
                 viewPager.setCurrentItem(tab.getPosition());
                 if (tab.getPosition()==0){
                     pagerController.notifyDataSetChanged();
@@ -68,6 +70,8 @@ public class TabbedActivity extends AppCompatActivity {
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
+                int tabIconColor = ContextCompat.getColor(getApplicationContext(), R.color.purple_700);
+                tab.getIcon().setColorFilter(tabIconColor, PorterDuff.Mode.SRC_IN);
 
             }
 

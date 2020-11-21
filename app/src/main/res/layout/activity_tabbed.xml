@@ -14,14 +14,21 @@
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:tabIndicatorColor="@color/white"
+            app:tabBackground="@color/purple_200"
+
+            >
 
 
             <com.google.android.material.tabs.TabItem
                 android:id="@+id/cultura_sorda"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:icon="@drawable/deaf" />
+                android:icon="@drawable/deaf"
+
+                />
+
 
             <!-- android:text="Cultura sorda" -->
 

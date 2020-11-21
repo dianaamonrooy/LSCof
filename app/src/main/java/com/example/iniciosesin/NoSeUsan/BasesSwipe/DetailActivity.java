@@ -1,4 +1,4 @@
-package com.example.iniciosesin.NoSeUsan;
+package com.example.iniciosesin.NoSeUsan.BasesSwipe;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -15,5 +15,6 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail);
         TextView textView = findViewById(R.id.textView_detail);
         textView.setText(getIntent().getStringExtra("param"));
+
     }
 }

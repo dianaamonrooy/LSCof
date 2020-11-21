@@ -1,17 +1,16 @@
 package com.example.iniciosesin.ControladorTab;
 
-import android.content.DialogInterface;
+import android.animation.ArgbEvaluator;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
 
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -21,16 +20,15 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.Space;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.Toast;
 
+import com.example.iniciosesin.Aprende.Adapter;
+import com.example.iniciosesin.Aprende.Model;
 import com.example.iniciosesin.R;
-import com.example.iniciosesin.Trial;
-import com.example.iniciosesin.User;
-import com.example.iniciosesin.actividades.Verbos;
+import com.example.iniciosesin.Aprende.BotonesVideos;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -42,11 +40,9 @@ import com.takusemba.spotlight.CustomTarget;
 import com.takusemba.spotlight.OnSpotlightEndedListener;
 import com.takusemba.spotlight.OnSpotlightStartedListener;
 import com.takusemba.spotlight.Spotlight;
-import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
+import java.util.List;
 
 import xyz.hanks.library.bang.SmallBangView;
 
@@ -63,6 +59,14 @@ public class LSC extends Fragment {
     private DatabaseReference myRef;
     private View vista;
     private View vista2;
+
+    //
+
+    private ViewPager viewPager;
+    private Adapter adapter;
+    private List<Model> models;
+    private Integer[] colors = null;
+    private ArgbEvaluator argbEvaluator = new ArgbEvaluator();
 
     private int blue = Color.parseColor("#0F80AA");
 
@@ -122,55 +126,89 @@ public class LSC extends Fragment {
         mStorageRef = FirebaseStorage.getInstance().getReference();
         carpetas = new ArrayList<>();
         //LinearLayout linearLayout = (LinearLayout) getView().findViewById(R.id.LinealLayoutLSC);
-        TableLayout tableLayout = (TableLayout) vista.findViewById(R.id.TableLayoutLSC);
+        //TableLayout tableLayout = (TableLayout) vista.findViewById(R.id.TableLayoutLSC);
         StorageReference ref = mStorageRef.child("videos");
-        myAuth.getCurrentUser();
         myRef = database.getReference().child(myAuth.getCurrentUser().getUid().toString());
-        myRef.child("location").setValue("Aprender");
+        myRef.child("location").setValue("LSC");
 
         ref.listAll().addOnSuccessListener(new OnSuccessListener<ListResult>() {
             @Override
             public void onSuccess(ListResult listResult) {
-                if (tableLayout.getChildCount() <= 0) {
-
-                    int numeroTableRows;
-                    if (listResult.getPrefixes().size() % 3 == 0) {
-                        numeroTableRows = listResult.getPrefixes().size() / 3;
-                    } else {
-                        numeroTableRows = listResult.getPrefixes().size() / 3 + 1;
-                    }
-
-                    for (int i = 1; numeroTableRows >= i; i++) {
-                        TableRow tableRow = new TableRow(getActivity().getApplicationContext());
-                        tableRow.setId(i);
-                        tableRow.setLayoutParams(new TableRow.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-                        tableRow.setGravity(Gravity.CENTER);
-                        tableLayout.addView(tableRow);
-
-                    }
-                    showFolders(listResult, tableLayout, vista);
-
-
+                models = new ArrayList<>();
+                for (StorageReference carpeta : listResult.getPrefixes()) {
+                    models.add(new Model(setButtonImage(carpeta), carpeta.getName(), ""));
                 }
+                /*models.add(new Model(R.drawable.hands, "Brochure", "Brochure is an informative paper document (often also used for advertising) that can be folded into a template"));
+                models.add(new Model(R.drawable.comida, "Sticker", "Sticker is a type of label: a piece of printed paper, plastic, vinyl, or other material with pressure sensitive adhesive on one side"));
+                models.add(new Model(R.drawable.verbosss, "Poster", "Poster is any piece of printed paper designed to be attached to a wall or vertical surface."));
+                models.add(new Model(R.drawable.usuario, "Namecard", "Business cards are cards bearing business information about a company or individual."));
+                */
+                adapter = new Adapter(models, getActivity());
 
+                viewPager = vista.findViewById(R.id.viewPager_LSC);
+                viewPager.setAdapter(adapter);
+                viewPager.setPadding(130, 0, 130, 0);
+
+                Integer[] colors_temp = {
+                        getResources().getColor(R.color.color1),
+                        getResources().getColor(R.color.color2),
+                        getResources().getColor(R.color.color3),
+                        getResources().getColor(R.color.color4)
+                };
+
+                colors = colors_temp;
+
+                viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+                    @Override
+                    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+                        /*if (position < (adapter.getCount() - 1) && position < (colors.length - 1)) {
+                            viewPager.setBackgroundColor(
+
+                                    (Integer) argbEvaluator.evaluate(
+                                            positionOffset,
+                                            colors[position],
+                                            colors[position + 1]
+                                    )
+                            );
+                        } else {
+                            viewPager.setBackgroundColor(colors[colors.length - 1]);
+                        }*/
+                        Button aprende = vista.findViewById(R.id.aprende_lsc);
+                        aprende.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                String titulo=models.get(position).getTitle();
+                                myRef.child("location").setValue(titulo);
+                                Intent i = new Intent(getActivity().getApplicationContext(), BotonesVideos.class);
+                                //i.putExtra("nombreCarpeta",titulo);
+                                startActivity(i);
+
+
+                            }
+                        });
+                        Button practica = vista.findViewById(R.id.practica_lsc);
+                        practica.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Toast.makeText(getActivity().getApplicationContext(),models.get(position).getTitle(),Toast.LENGTH_SHORT);
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onPageSelected(int position) {
+
+
+                    }
+
+                    @Override
+                    public void onPageScrollStateChanged(int state) {
+
+                    }
+                });
 
             }
-        }).addOnFailureListener(e -> {
-            AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity().getApplicationContext());
-            builder1.setMessage("Ha ocurrido un error, revisa tu conexión a internet");
-            builder1.setCancelable(true);
-            builder1.setPositiveButton(
-                    "ok", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.cancel();
-                        }
-                    }
-            );
-            AlertDialog alert1 = builder1.create();
-            alert1.show();
-
-
         });
         return vista;
     }
@@ -233,16 +271,16 @@ public class LSC extends Fragment {
                                     aprende_boton.setLayoutParams(paramsAprende);
 
                                     practica_boton.setLayoutParams(paramsPractica);
-                                    Animation scaleUp,scaleDown;
-                                    scaleUp= AnimationUtils.loadAnimation(getActivity(), R.anim.scale_up);
-                                    scaleDown= AnimationUtils.loadAnimation(getActivity(), R.anim.scale_up);
+                                    Animation scaleUp, scaleDown;
+                                    scaleUp = AnimationUtils.loadAnimation(getActivity(), R.anim.scale_up);
+                                    scaleDown = AnimationUtils.loadAnimation(getActivity(), R.anim.scale_up);
                                     aprende_boton.setOnTouchListener(new View.OnTouchListener() {
                                         @Override
                                         public boolean onTouch(View v, MotionEvent event) {
-                                            if (event.getAction()==MotionEvent.ACTION_DOWN){
+                                            if (event.getAction() == MotionEvent.ACTION_DOWN) {
                                                 aprende_boton.startAnimation(scaleUp);
 
-                                            }else if(event.getAction()==MotionEvent.ACTION_UP){
+                                            } else if (event.getAction() == MotionEvent.ACTION_UP) {
                                                 aprende_boton.startAnimation(scaleDown);
 
                                             }
@@ -252,10 +290,10 @@ public class LSC extends Fragment {
                                     practica_boton.setOnTouchListener(new View.OnTouchListener() {
                                         @Override
                                         public boolean onTouch(View v, MotionEvent event) {
-                                            if (event.getAction()==MotionEvent.ACTION_DOWN){
+                                            if (event.getAction() == MotionEvent.ACTION_DOWN) {
 
                                                 practica_boton.startAnimation(scaleUp);
-                                            }else if(event.getAction()==MotionEvent.ACTION_UP){
+                                            } else if (event.getAction() == MotionEvent.ACTION_UP) {
 
                                                 practica_boton.startAnimation(scaleDown);
                                             }
@@ -314,7 +352,28 @@ public class LSC extends Fragment {
 
     }
 
+    public int setButtonImage(StorageReference carpeta) {
+        switch (carpeta.getName().toLowerCase()) {
+            case "comida":
+                return R.drawable.comida;
+            case "números":
+                return R.drawable.numeros;
+            case "verbos":
+                return R.drawable.verbosss;
+            default:
+                return R.drawable.hands;
 
+        }
+
+    }
+
+    public void aprende(){
+
+
+    }
+    public void practica(){
+
+    }
 
 
 }

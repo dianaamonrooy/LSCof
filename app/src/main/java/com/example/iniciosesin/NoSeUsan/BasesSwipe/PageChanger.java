@@ -1,14 +1,13 @@
-package com.example.iniciosesin.NoSeUsan;
+package com.example.iniciosesin.NoSeUsan.BasesSwipe;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import android.animation.ArgbEvaluator;
-import android.app.ActionBar;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.view.View;
 
+import com.example.iniciosesin.Aprende.Model;
+import com.example.iniciosesin.Aprende.Adapter;
 import com.example.iniciosesin.R;
 
 import java.util.ArrayList;

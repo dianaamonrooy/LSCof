@@ -1,14 +1,16 @@
-package com.example.iniciosesin.NoSeUsan;
+package com.example.iniciosesin.Aprende;
+
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.viewpager.widget.PagerAdapter;
 
+import com.example.iniciosesin.Aprende.Model;
 import com.example.iniciosesin.R;
 
 import java.util.List;
@@ -18,6 +20,7 @@ public class Adapter extends PagerAdapter {
     private List<Model> models;
     private LayoutInflater layoutInflater;
     private Context context;
+    private LinearLayout linearLayout;
 
     public Adapter(List<Model> models, Context context) {
         this.models = models;
@@ -30,13 +33,13 @@ public class Adapter extends PagerAdapter {
     }
 
     @Override
-    public boolean isViewFromObject( View view, Object object) {
+    public boolean isViewFromObject(View view, Object object) {
         return view.equals(object);
     }
 
 
     @Override
-    public Object instantiateItem( ViewGroup container, final int position) {
+    public Object instantiateItem(ViewGroup container, final int position) {
         layoutInflater = LayoutInflater.from(context);
         View view = layoutInflater.inflate(R.layout.item, container, false);
 
@@ -54,9 +57,9 @@ public class Adapter extends PagerAdapter {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, DetailActivity.class);
+                /*Intent intent = new Intent(context, DetailActivity.class);
                 intent.putExtra("param", models.get(position).getTitle());
-                context.startActivity(intent);
+                context.startActivity(intent);*/
                 // finish();
             }
         });
@@ -67,6 +70,6 @@ public class Adapter extends PagerAdapter {
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
-        container.removeView((View)object);
+        container.removeView((View) object);
     }
 }

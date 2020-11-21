@@ -12,9 +12,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.InicioSesión">
-        <activity android:name=".NoSeUsan.PageChanger"></activity>
-            <!--android:theme="@style/Theme.InicioSesión.NoBar"-->
-        <activity android:name=".NoSeUsan.DetailActivity" />
+        <activity android:name=".Aprende.ShowVideos"></activity>
+        <activity android:name=".Aprende.BotonesVideos" />
+        <activity android:name=".NoSeUsan.BasesSwipe.PageChanger" /> <!-- android:theme="@style/Theme.InicioSesión.NoBar" -->
+        <activity android:name=".NoSeUsan.BasesSwipe.DetailActivity" />
         <activity
             android:name=".popUps.PopUpShowVideos"
             android:theme="@style/Theme.InicioSesión.popMe" />
