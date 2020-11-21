@@ -3,7 +3,7 @@
     package="com.example.iniciosesin">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <application
         android:allowBackup="true"
@@ -12,11 +12,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.InicioSesión">
-        <activity android:name=".popUps.PopUpShowVideos"
-            android:theme="@style/Theme.InicioSesión.popMe"
-            >
-
-        </activity>
+        <activity android:name=".NoSeUsan.PageChanger"></activity>
+            <!--android:theme="@style/Theme.InicioSesión.NoBar"-->
+        <activity android:name=".NoSeUsan.DetailActivity" />
+        <activity
+            android:name=".popUps.PopUpShowVideos"
+            android:theme="@style/Theme.InicioSesión.popMe" />
         <activity android:name=".Trial" />
         <activity android:name=".actividades.TabbedActivity" />
         <activity android:name=".actividades.Verbos" />

@@ -10,6 +10,7 @@ import android.widget.TableLayout;
 import android.widget.Toast;
 
 import com.example.iniciosesin.ControladorTab.PagerController;
+import com.example.iniciosesin.NoSeUsan.PageChanger;
 import com.example.iniciosesin.R;
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
@@ -89,6 +90,7 @@ public class TabbedActivity extends AppCompatActivity {
         myAuth.getCurrentUser();
         myRef = database.getReference().child(myAuth.getCurrentUser().getUid().toString());
         myRef.child("aprende_practica").setValue("Practica");
+        startActivity(new Intent(getApplicationContext(), PageChanger.class));
 
 
     }

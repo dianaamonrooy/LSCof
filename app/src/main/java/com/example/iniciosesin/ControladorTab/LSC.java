@@ -13,8 +13,11 @@ import androidx.fragment.app.Fragment;
 
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -230,6 +233,36 @@ public class LSC extends Fragment {
                                     aprende_boton.setLayoutParams(paramsAprende);
 
                                     practica_boton.setLayoutParams(paramsPractica);
+                                    Animation scaleUp,scaleDown;
+                                    scaleUp= AnimationUtils.loadAnimation(getActivity(), R.anim.scale_up);
+                                    scaleDown= AnimationUtils.loadAnimation(getActivity(), R.anim.scale_up);
+                                    aprende_boton.setOnTouchListener(new View.OnTouchListener() {
+                                        @Override
+                                        public boolean onTouch(View v, MotionEvent event) {
+                                            if (event.getAction()==MotionEvent.ACTION_DOWN){
+                                                aprende_boton.startAnimation(scaleUp);
+
+                                            }else if(event.getAction()==MotionEvent.ACTION_UP){
+                                                aprende_boton.startAnimation(scaleDown);
+
+                                            }
+                                            return true;
+                                        }
+                                    });
+                                    practica_boton.setOnTouchListener(new View.OnTouchListener() {
+                                        @Override
+                                        public boolean onTouch(View v, MotionEvent event) {
+                                            if (event.getAction()==MotionEvent.ACTION_DOWN){
+
+                                                practica_boton.startAnimation(scaleUp);
+                                            }else if(event.getAction()==MotionEvent.ACTION_UP){
+
+                                                practica_boton.startAnimation(scaleDown);
+                                            }
+                                            return true;
+                                        }
+                                    });
+
                                     //Toast.makeText(getActivity(), "spotlight is started", Toast.LENGTH_SHORT).show();
 
                                 }
