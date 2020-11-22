@@ -43,11 +43,13 @@ public class PopUpShowVideos extends AppCompatActivity {
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         int width=dm.widthPixels;
         int height=dm.heightPixels;
-        getWindow().setLayout((int)(width*0.8f),(int)(height*.3));
+        getWindow().setLayout((int)(width*0.8f),(int)(height*.2));
         WindowManager.LayoutParams params=getWindow().getAttributes();
-        params.gravity = Gravity.CENTER;
+        //params.gravity = Gravity.CENTER;
+        //params.gravity = Gravity.TOP;
+        //params.gravity = Gravity.CENTER_HORIZONTAL;
         params.x=0;
-        params.y=-20;
+        params.y=40;
         getWindow().setAttributes(params);
 
         mStorageRef = FirebaseStorage.getInstance().getReference();

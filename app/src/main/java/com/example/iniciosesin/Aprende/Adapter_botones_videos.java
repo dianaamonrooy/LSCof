@@ -76,7 +76,7 @@ public class Adapter_botones_videos extends PagerAdapter {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onClick = true;
+                /*onClick = true;
                 mStorageRef = FirebaseStorage.getInstance().getReference();
                 myRef = database.getReference().child(myAuth.getCurrentUser().getUid().toString());
                 myRef.addValueEventListener(new ValueEventListener() {
@@ -92,11 +92,6 @@ public class Adapter_botones_videos extends PagerAdapter {
                                 onClick=false;
                                 context.startActivity(intent);
                                 //((Activity)context).finish();
-
-
-
-
-
                             }
                         }
                     }
@@ -108,7 +103,7 @@ public class Adapter_botones_videos extends PagerAdapter {
                     }
                 });
 
-                // finish();
+                // finish();*/
             }
         });
 
