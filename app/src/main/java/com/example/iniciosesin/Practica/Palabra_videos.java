@@ -134,7 +134,7 @@ public class Palabra_videos extends AppCompatActivity {
             for (int i = 0; i < 3; i++) {
                 addOptions(items, options);
             }
-            setTextToButtons(options);
+            setURLToVideos(options);
 
         } catch (Exception e) {
 
@@ -143,7 +143,7 @@ public class Palabra_videos extends AppCompatActivity {
 
     }
 
-    private void setTextToButtons(List<StorageReference> opciones) {
+    private void setURLToVideos(List<StorageReference> opciones) {
         List<VideoView> videos = new ArrayList<>();
         HashMap<VideoView, StorageReference> diccBotonesNombres = new HashMap<>();
 
