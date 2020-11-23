@@ -83,15 +83,7 @@ public class PopUpShowVideos extends AppCompatActivity {
                             return true;
                         }
                     });
-                    //video.setOnPreparedListener(mediaPlayer -> video.start());
-
-
-
-
-
                 }
-
-                //Log.d("Éxito", "Value is: " + value);
             }
 
             @Override
@@ -100,12 +92,6 @@ public class PopUpShowVideos extends AppCompatActivity {
                 Log.w("Error", "Failed to read value.", error.toException());
             }
         });
-
-
-
-
-
-
 
     }
 }

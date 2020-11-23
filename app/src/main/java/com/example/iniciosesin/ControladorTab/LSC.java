@@ -23,12 +23,12 @@ import android.widget.LinearLayout;
 import android.widget.Space;
 import android.widget.TableLayout;
 import android.widget.TableRow;
-import android.widget.Toast;
 
 import com.example.iniciosesin.Aprende.Adapter;
 import com.example.iniciosesin.Aprende.Model;
 import com.example.iniciosesin.R;
 import com.example.iniciosesin.Aprende.BotonesVideos;
+import com.example.iniciosesin.Practica.Video_palabras;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -191,7 +191,11 @@ public class LSC extends Fragment {
                         practica.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                Toast.makeText(getActivity().getApplicationContext(),models.get(position).getTitle(),Toast.LENGTH_SHORT);
+                                String titulo=models.get(position).getTitle();
+                                myRef.child("location").setValue(titulo);
+                                Intent i = new Intent(getActivity().getApplicationContext(), Video_palabras.class);
+                                //i.putExtra("nombreCarpeta",titulo);
+                                startActivity(i);
                             }
                         });
                     }

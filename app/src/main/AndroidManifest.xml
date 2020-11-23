@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.InicioSesión">
-        <activity android:name=".Aprende.ShowVideos"></activity>
+        <activity android:name=".Practica.Video_palabras"></activity>
+        <activity android:name=".Aprende.ShowVideos" />
         <activity android:name=".Aprende.BotonesVideos" />
         <activity android:name=".NoSeUsan.BasesSwipe.PageChanger" /> <!-- android:theme="@style/Theme.InicioSesión.NoBar" -->
         <activity android:name=".NoSeUsan.BasesSwipe.DetailActivity" />
