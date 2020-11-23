@@ -21,8 +21,8 @@
 
         <VideoView
             android:id="@+id/video_en_video_palabras"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="357dp"
+            android:layout_height="210dp"
             android:layout_gravity="center" />
     </FrameLayout>
 
@@ -40,19 +40,19 @@
 
         <Button
             android:id="@+id/boton_opcion1"
+            android:background="@drawable/round"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Button" />
+            android:layout_height="wrap_content" />
 
         <Space
             android:layout_width="80dp"
-            android:layout_height="80dp" />
+            android:layout_height="0dp" />
 
         <Button
             android:id="@+id/boton_opcion2"
+            android:background="@drawable/round"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Button" />
+            android:layout_height="wrap_content" />
 
     </TableRow>
 
@@ -70,19 +70,19 @@
 
         <Button
             android:id="@+id/boton_opcion3"
+            android:background="@drawable/round"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Button" />
+            android:layout_height="wrap_content" />
 
         <Space
             android:layout_width="80dp"
-            android:layout_height="80dp" />
+            android:layout_height="0dp" />
 
         <Button
             android:id="@+id/boton_opcion4"
+            android:background="@drawable/round"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Button" />
+            android:layout_height="wrap_content" />
     </TableRow>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -196,6 +196,7 @@ public class LSC extends Fragment {
                                 Intent i = new Intent(getActivity().getApplicationContext(), Video_palabras.class);
                                 //i.putExtra("nombreCarpeta",titulo);
                                 startActivity(i);
+                                getActivity().finish();
                             }
                         });
                     }

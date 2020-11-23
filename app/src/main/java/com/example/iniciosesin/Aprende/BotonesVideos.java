@@ -41,6 +41,9 @@ public class BotonesVideos extends AppCompatActivity {
     private Integer[] colors = null;
     private ArgbEvaluator argbEvaluator = new ArgbEvaluator();
 
+    private int pagePosition=0;
+    private ListResult ButtonsNamesList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,6 +72,7 @@ public class BotonesVideos extends AppCompatActivity {
             }
         });
 
+
         //nombreCarpeta = getIntent().getStringExtra("nombreCarpeta");
 
 
@@ -95,8 +99,10 @@ public class BotonesVideos extends AppCompatActivity {
         ref.listAll().addOnSuccessListener(new OnSuccessListener<ListResult>() {
             @Override
             public void onSuccess(ListResult listResult) {
+                ButtonsNamesList = listResult;
+
                 models = new ArrayList<>();
-                nombresVideos=new ArrayList<>();
+                nombresVideos = new ArrayList<>();
                 for (StorageReference video : listResult.getItems()) {
                     nombresVideos.add(video.getName());
                     models.add(new Model(setButtonImage(video), video.getName().substring(0, video.getName().length() - 4), "Haz clic para conocer cómo se dice en LSC"));
@@ -132,36 +138,51 @@ public class BotonesVideos extends AppCompatActivity {
                         } else {
                             viewPager.setBackgroundColor(colors[colors.length - 1]);
                         }
-                        Button boton_reprod_video=findViewById(R.id.boton_video);
+                        Button boton_reprod_video = findViewById(R.id.boton_video);
                         boton_reprod_video.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                StorageReference video = listResult.getItems().get(position);
-                                video.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                pagePosition = position;
+                                new Thread(new Runnable() {
                                     @Override
-                                    public void onSuccess(Uri uri) {
-                                        //Toast.makeText(getApplicationContext(), uri.toString(), Toast.LENGTH_SHORT).show();
-                                        myRef = database.getReference().child(myAuth.getCurrentUser().getUid().toString());
-                                        myRef.child("url").setValue(uri.toString());
-                                        Intent i = new Intent(getApplicationContext(), PopUpShowVideos.class);
-                                        startActivity(i);
+                                    public void run() {
+                                        StorageReference video = listResult.getItems().get(position);
+                                        video.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                            @Override
+                                            public void onSuccess(Uri uri) {
+                                                //Toast.makeText(getApplicationContext(), uri.toString(), Toast.LENGTH_SHORT).show();
+                                                myRef = database.getReference().child(myAuth.getCurrentUser().getUid().toString());
+                                                myRef.child("url").setValue(uri.toString());
+                                                runOnUiThread(new Runnable() {
+                                                    @Override
+                                                    public void run() {
+                                                        onPause();
+
+                                                        Intent i = new Intent(getApplicationContext(), PopUpShowVideos.class);
+                                                        startActivity(i);
+
+                                                    }
+                                                });
+                                            }
+                                        });
                                     }
-                                });
+                                }).start();
                             }
                         });
                     }
+
                     @Override
                     public void onPageSelected(int position) {
                     }
 
                     @Override
                     public void onPageScrollStateChanged(int state) {
+
                     }
                 };
                 viewPager.addOnPageChangeListener(pageChangeListener);
-                //pageChangeListener.onPageSelected(0);
+                pageChangeListener.onPageSelected(pagePosition);
             }
         });
     }
-
 }
