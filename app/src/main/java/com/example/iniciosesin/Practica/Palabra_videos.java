@@ -95,7 +95,7 @@ public class Palabra_videos extends AppCompatActivity {
                                 public boolean onTouch(View v, MotionEvent event) {
                                     Toast.makeText(Palabra_videos.this, "Respuesta correcta", Toast.LENGTH_SHORT).show();
                                     finishAffinity();
-                                    Video_palabras.restart(getApplicationContext());
+                                    startActivity(new Intent(getApplicationContext(), Parejas.class));
                                     //startActivity(new Intent (getApplicationContext(),TabbedActivity.class));
                                     //finish();
                                     return false;
