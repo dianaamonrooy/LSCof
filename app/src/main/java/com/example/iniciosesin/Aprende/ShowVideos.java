@@ -66,7 +66,7 @@ public class ShowVideos extends AppCompatActivity {
         Log.d("CDA", "onBackPressed Called");
         Intent setIntent = new Intent(ShowVideos.this,BotonesVideos.class);
         startActivity(setIntent);
-        isFinishing();
+        finish();
 
     }
 }
