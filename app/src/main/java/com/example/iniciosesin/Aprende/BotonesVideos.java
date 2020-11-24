@@ -41,7 +41,7 @@ public class BotonesVideos extends AppCompatActivity {
     private Integer[] colors = null;
     private ArgbEvaluator argbEvaluator = new ArgbEvaluator();
 
-    private int pagePosition=0;
+    private int pagePosition = 0;
     private ListResult ButtonsNamesList;
 
     @Override
@@ -85,8 +85,58 @@ public class BotonesVideos extends AppCompatActivity {
         switch (video.getName().toLowerCase().charAt(0)) {
             case 'a':
                 return R.drawable.letraa;
+            case 'b':
+                return R.drawable.letrab;
+            case 'c':
+                return R.drawable.letrac;
+            case 'd':
+                return R.drawable.letrad;
+            case 'e':
+                return R.drawable.letrae;
+            case 'f':
+                return R.drawable.letraf;
+            case 'g':
+                return R.drawable.letrag;
+            case 'h':
+                return R.drawable.letrah;
+            case 'i':
+                return R.drawable.letrai;
+            case 'j':
+                return R.drawable.letraj;
+            case 'k':
+                return R.drawable.letrak;
+            case 'l':
+                return R.drawable.letral;
+            case 'm':
+                return R.drawable.letram;
             case 'n':
                 return R.drawable.letran;
+            case 'ñ':
+                return R.drawable.letranie;
+            case 'o':
+                return R.drawable.letrao;
+            case 'p':
+                return R.drawable.letrap;
+            case 'q':
+                return R.drawable.letraq;
+            case 'r':
+                return R.drawable.letrar;
+            case 's':
+                return R.drawable.letras;
+            case 't':
+                return R.drawable.letrat;
+            case 'u':
+                return R.drawable.letrau;
+            case 'v':
+                return R.drawable.letrav;
+            case 'w':
+                return R.drawable.letraw;
+            case 'x':
+                return R.drawable.letrax;
+            case 'y':
+                return R.drawable.letray;
+            case 'z':
+                return R.drawable.letraz;
             default:
                 return R.drawable.verbosss;
 
@@ -127,17 +177,37 @@ public class BotonesVideos extends AppCompatActivity {
                 ViewPager.OnPageChangeListener pageChangeListener = new ViewPager.OnPageChangeListener() {
                     @Override
                     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                        if (position < (adapter.getCount() - 1) && position < (colors.length - 1)) {
+                        if ((position%colors.length)!=(colors.length-1)){
                             viewPager.setBackgroundColor(
                                     (Integer) argbEvaluator.evaluate(
                                             positionOffset,
-                                            colors[position],
-                                            colors[position + 1]
+                                            colors[position%colors.length],
+                                            colors[(position%colors.length)+1]
+                                    )
+                            );
+
+                        }else{
+                            viewPager.setBackgroundColor(
+                                    (Integer) argbEvaluator.evaluate(
+                                            positionOffset,
+                                            colors[position%colors.length],
+                                            colors[((position+1)%colors.length)]
+                                    )
+                            );
+                        }
+                        /*if (position < (adapter.getCount() - 1) && position < (colors.length - 1)) {
+                            int color1 = colors[(position + 1) % colors.length];
+                            int color2 = colors[(position + 1) % colors.length - 1];
+                            viewPager.setBackgroundColor(
+                                    (Integer) argbEvaluator.evaluate(
+                                            positionOffset,
+                                            colors[(position + 1) % colors.length-1],
+                                            colors[(position + 1) % colors.length]
                                     )
                             );
                         } else {
-                            viewPager.setBackgroundColor(colors[colors.length - 1]);
-                        }
+                            viewPager.setBackgroundColor(colors[colors.length-1]);
+                        }*/
                         Button boton_reprod_video = findViewById(R.id.boton_video);
                         boton_reprod_video.setOnClickListener(new View.OnClickListener() {
                             @Override

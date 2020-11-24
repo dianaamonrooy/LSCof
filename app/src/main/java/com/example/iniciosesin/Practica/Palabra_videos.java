@@ -135,12 +135,8 @@ public class Palabra_videos extends AppCompatActivity {
                 addOptions(items, options);
             }
             setURLToVideos(options);
-
         } catch (Exception e) {
-
         }
-
-
     }
 
     private void setURLToVideos(List<StorageReference> opciones) {
@@ -191,8 +187,6 @@ public class Palabra_videos extends AppCompatActivity {
                 });
             }
         });
-
-
     }
 
     private void randomVideo(List<VideoView> videos, HashMap diccBotonesNombres, StorageReference optionName) {

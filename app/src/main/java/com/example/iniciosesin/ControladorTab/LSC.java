@@ -138,11 +138,7 @@ public class LSC extends Fragment {
                 for (StorageReference carpeta : listResult.getPrefixes()) {
                     models.add(new Model(setButtonImage(carpeta), carpeta.getName(), ""));
                 }
-                /*models.add(new Model(R.drawable.hands, "Brochure", "Brochure is an informative paper document (often also used for advertising) that can be folded into a template"));
-                models.add(new Model(R.drawable.comida, "Sticker", "Sticker is a type of label: a piece of printed paper, plastic, vinyl, or other material with pressure sensitive adhesive on one side"));
-                models.add(new Model(R.drawable.verbosss, "Poster", "Poster is any piece of printed paper designed to be attached to a wall or vertical surface."));
-                models.add(new Model(R.drawable.usuario, "Namecard", "Business cards are cards bearing business information about a company or individual."));
-                */
+
                 adapter = new Adapter(models, getActivity());
 
                 viewPager = vista.findViewById(R.id.viewPager_LSC);
