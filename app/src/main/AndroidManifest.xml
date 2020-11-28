@@ -12,13 +12,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.InicioSesión">
-        <activity android:name=".Practica.Palabra_videos"
-            android:taskAffinity=".actividades.TabbedActivity"
-            android:excludeFromRecents="true">
-        </activity>
-        <activity android:name=".Practica.Video_palabras"
-            android:taskAffinity=".actividades.TabbedActivity"
-            android:excludeFromRecents="true"/>
+        <activity android:name=".Practica.Parejas"></activity>
+        <activity
+            android:name=".Practica.Palabra_videos"
+            android:excludeFromRecents="true"
+            android:taskAffinity=".actividades.TabbedActivity"></activity>
+        <activity
+            android:name=".Practica.Video_palabras"
+            android:excludeFromRecents="true"
+            android:taskAffinity=".actividades.TabbedActivity" />
         <activity android:name=".Aprende.ShowVideos" />
         <activity android:name=".Aprende.BotonesVideos" />
         <activity android:name=".NoSeUsan.BasesSwipe.PageChanger" /> <!-- android:theme="@style/Theme.InicioSesión.NoBar" -->
