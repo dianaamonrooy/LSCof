@@ -56,10 +56,14 @@ public class Palabra_videos extends AppCompatActivity {
     private Button boton2;
     private Button boton3;
     private Button boton4;
+/* esta variable cuenta los errores y se pasa de actividad en actividad */
+    private int errores;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+         errores = getIntent().getExtras().getInt("errores");
+        System.out.println("Estos son los errores: "+ errores);
         setContentView(R.layout.activity_palabra_videos);
         palabra = findViewById(R.id.chosen_word_palabra_videos);
         video1 = findViewById(R.id.video1_palabra_videos);
@@ -95,7 +99,9 @@ public class Palabra_videos extends AppCompatActivity {
                                 public boolean onTouch(View v, MotionEvent event) {
                                     Toast.makeText(Palabra_videos.this, "Respuesta correcta", Toast.LENGTH_SHORT).show();
                                     finishAffinity();
-                                    startActivity(new Intent(getApplicationContext(), Parejas.class));
+                                    Intent ii = new Intent(getApplicationContext(), Parejas.class);
+                                    ii.putExtra("errores",errores);
+                                    startActivity(ii);
                                     //startActivity(new Intent (getApplicationContext(),TabbedActivity.class));
                                     //finish();
                                     return false;
@@ -107,6 +113,7 @@ public class Palabra_videos extends AppCompatActivity {
                                     @Override
                                     public boolean onTouch(View v, MotionEvent event) {
                                         Toast.makeText(Palabra_videos.this, "Respuesta incorrecta", Toast.LENGTH_SHORT).show();
+                                        errores ++;
                                         return false;
                                     }
                                 });

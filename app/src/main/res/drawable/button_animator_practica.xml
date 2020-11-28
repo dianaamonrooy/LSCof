@@ -20,16 +20,16 @@
     <item android:state_pressed="true">
                 <shape>
                     android:shape="rectangle">
-                    <size
+                    <size>
                         android:height="50dp"
-                        android:width="150dp"></size>
-                    <corners
-                        android:radius="25dp"></corners>
-                    <stroke
+                        android:width="150dp"</size>
+                    <corners>
+                        android:radius="25dp"</corners>
+                    <stroke>
                         android:width="10px"
-                        android:color="#500F80AA"></stroke>
-                    <solid
-                        android:color="#FFFFFF"></solid>
+                        android:color="#500F80AA"</stroke>
+                    <solid>
+                        android:color="#FFFFFF"</solid>
 
                 </shape>
     </item>

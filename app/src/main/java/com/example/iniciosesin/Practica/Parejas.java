@@ -71,13 +71,14 @@ public class Parejas extends AppCompatActivity {
     private Button buttonComprobar;
     private List<StorageReference> options = new ArrayList<>();
 
-
+    int errores;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parejas);
+        errores = getIntent().getExtras().getInt("errores");
         palabra1 = findViewById(R.id.palabra1);
         palabra2 = findViewById(R.id.palabra2);
         palabra3 = findViewById(R.id.palabra3);
@@ -164,6 +165,7 @@ View.OnClickListener onButtonClickListener = new View.OnClickListener() {
                 x.setBackgroundResource(buttonroundcorrect);
             }else{
                 x.setBackgroundResource(buttonroundempty);
+                errores++;
                 correcto= false;
 
 

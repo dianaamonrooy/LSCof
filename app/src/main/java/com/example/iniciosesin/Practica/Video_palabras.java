@@ -50,12 +50,14 @@ public class Video_palabras extends AppCompatActivity {
     private Button boton1;
     private Button boton2;
     private Button boton3;
+    private int errores;
     private Button boton4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video_palabras);
+        errores = 0;
         video = findViewById(R.id.video_en_video_palabras);
         boton1 = findViewById(R.id.boton_opcion1);
         boton2 = findViewById(R.id.boton_opcion2);
@@ -190,7 +192,9 @@ public class Video_palabras extends AppCompatActivity {
                                                 @Override
                                                 public void onClick(View v) {
                                                     Toast.makeText(Video_palabras.this, "Respuesta correcta", Toast.LENGTH_SHORT).show();
-                                                    startActivity(new Intent(getApplicationContext(), Palabra_videos.class));
+                                                    Intent i = new Intent(getApplicationContext(),Palabra_videos.class);
+                                                    i.putExtra("errores",errores);
+                                                    startActivity(i);
                                                     finish();
                                                 }
                                             });
@@ -199,6 +203,7 @@ public class Video_palabras extends AppCompatActivity {
                                                     @Override
                                                     public void onClick(View v) {
                                                         Toast.makeText(Video_palabras.this, "Respuesta incorrecta", Toast.LENGTH_SHORT).show();
+                                                        errores++;
                                                     }
                                                 });
                                             }
