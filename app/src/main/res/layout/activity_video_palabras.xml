@@ -40,19 +40,23 @@
 
         <Button
             android:id="@+id/boton_opcion1"
-            android:background="@drawable/round"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:background="@drawable/round"
+            android:textColor="@color/black"
+            app:backgroundTint="@color/color1" />
 
         <Space
             android:layout_width="80dp"
             android:layout_height="0dp" />
 
         <Button
+            android:textColor="@color/black"
             android:id="@+id/boton_opcion2"
-            android:background="@drawable/round"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:background="@drawable/round"
+            app:backgroundTint="#80A2D2FF" />
 
     </TableRow>
 
@@ -69,20 +73,24 @@
         app:layout_constraintVertical_bias="0.835">
 
         <Button
+            android:textColor="@color/black"
             android:id="@+id/boton_opcion3"
-            android:background="@drawable/round"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:background="@drawable/round"
+            app:backgroundTint="@color/color3" />
 
         <Space
             android:layout_width="80dp"
             android:layout_height="0dp" />
 
         <Button
+            android:textColor="@color/black"
             android:id="@+id/boton_opcion4"
-            android:background="@drawable/round"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:background="@drawable/round"
+            app:backgroundTint="@color/color4" />
     </TableRow>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

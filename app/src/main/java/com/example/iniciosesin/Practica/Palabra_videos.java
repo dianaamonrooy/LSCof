@@ -165,9 +165,9 @@ public class Palabra_videos extends AppCompatActivity {
         item.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
-                MediaController mediaController = new MediaController(Palabra_videos.this);
+                /*MediaController mediaController = new MediaController(Palabra_videos.this);
                 video.setMediaController(mediaController);
-                mediaController.setAnchorView(video);
+                mediaController.setAnchorView(video);*/
                 video.setVideoURI(uri);
                 video.requestFocus();
 

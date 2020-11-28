@@ -61,10 +61,11 @@ public class PopUpShowVideos extends AppCompatActivity {
                 // whenever data at this location is updated.
                 if (dataSnapshot.exists()) {
                     url = dataSnapshot.child("url").getValue().toString();
-                    MediaController mediaController = new MediaController(PopUpShowVideos.this);
+
                     video = findViewById(R.id.video);
+                    /*MediaController mediaController = new MediaController(PopUpShowVideos.this);
                     video.setMediaController(mediaController);
-                    mediaController.setAnchorView(video);
+                    mediaController.setAnchorView(video);*/
                     Uri uri = Uri.parse(url);
                     video.setVideoURI(uri);
                     video.requestFocus();

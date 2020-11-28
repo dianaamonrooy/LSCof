@@ -40,7 +40,8 @@
                 android:paddingLeft="30dp"
                 android:paddingRight="30dp"
                 android:text="Aprende"
-                android:textColor="#fff" />
+                android:textColor="#fff"
+                app:backgroundTint="#CDB4DB" />
 
             <Space
                 android:layout_width="10dp"
@@ -57,7 +58,8 @@
                 android:paddingLeft="30dp"
                 android:paddingRight="30dp"
                 android:text="Practica"
-                android:textColor="#fff" />
+                android:textColor="#fff"
+                app:backgroundTint="@color/color2" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
