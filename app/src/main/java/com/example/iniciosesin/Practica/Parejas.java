@@ -1,7 +1,9 @@
 package com.example.iniciosesin.Practica;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.iniciosesin.R;
+
 import android.content.ClipData;
 import android.content.Intent;
 import android.graphics.Color;
@@ -56,10 +58,10 @@ public class Parejas extends AppCompatActivity {
     private TextView palabra4;
     private ArrayList<Float> xCoordinates = new ArrayList<>();
     private ArrayList<Float> yCoordinates = new ArrayList<>();
-    private ArrayList <TextView> palabras = new ArrayList<TextView>();
-    private ArrayList <TextView> containers = new ArrayList<TextView>();
-    private HashMap <Integer,TextView> indexedContain = new HashMap<>();
-    private HashMap <TextView,Integer> indexedContainInverse = new HashMap<>();
+    private ArrayList<TextView> palabras = new ArrayList<TextView>();
+    private ArrayList<TextView> containers = new ArrayList<TextView>();
+    private HashMap<Integer, TextView> indexedContain = new HashMap<>();
+    private HashMap<TextView, Integer> indexedContainInverse = new HashMap<>();
     private VideoView video1;
     private VideoView video2;
     private VideoView video3;
@@ -70,8 +72,6 @@ public class Parejas extends AppCompatActivity {
     private TextView contain4;
     private Button buttonComprobar;
     private List<StorageReference> options = new ArrayList<>();
-
-
 
 
     @Override
@@ -132,48 +132,51 @@ public class Parejas extends AppCompatActivity {
             }
         });
     }
-/////
-View.OnClickListener onButtonClickListener = new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-        System.out.println(indexedContain);
-        try{
-            comprobar();
-        }catch (Exception e){
-            Toast.makeText(Parejas.this,"Arrastra las palabras debajo del video correspondiente", Toast.LENGTH_SHORT).show();
+
+    /////
+    View.OnClickListener onButtonClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            System.out.println(indexedContain);
+            try {
+                comprobar();
+            } catch (Exception e) {
+                Toast.makeText(Parejas.this, "Arrastra las palabras debajo del video correspondiente", Toast.LENGTH_SHORT).show();
+
+            }
 
         }
+    };
 
-    }
-};
-     public void comprobar(){
-         boolean correcto = true;
-         if (indexedContain.size() != 4){
-             throw new IllegalStateException("All fields must be filled in");
-         }
-        for (int i = 0; i<4; ++i){
+    public void comprobar() {
+        boolean correcto = true;
+        if (indexedContain.size() != 4) {
+            throw new IllegalStateException("All fields must be filled in");
+        }
+        for (int i = 0; i < 4; ++i) {
             TextView view = indexedContain.get(i);
             TextView x = containers.get(i);
             String droppedName = ((String) view.getText()).trim();
             String neededAnswer = indexedAnswers.get(containers.indexOf(x)).trim();
-            System.out.println("Soltado " + droppedName );
-            System.out.println("Necesitado " + neededAnswer );
+            System.out.println("Soltado " + droppedName);
+            System.out.println("Necesitado " + neededAnswer);
             Boolean prueba = neededAnswer.equals(droppedName);
             System.out.println(prueba);
-            if (prueba){
+            if (prueba) {
                 x.setBackgroundResource(buttonroundcorrect);
-            }else{
+            } else {
                 x.setBackgroundResource(buttonroundempty);
-                correcto= false;
+                correcto = false;
 
 
             }
         }
-        if (correcto){
-            Toast.makeText(Parejas.this,"Respuesta Correcta", Toast.LENGTH_SHORT).show();
+        if (correcto) {
+            Toast.makeText(Parejas.this, "Respuesta Correcta", Toast.LENGTH_SHORT).show();
             Video_palabras.restart(getApplicationContext());
-         }
-     }
+        }
+    }
+
     public void randomOptions(List<StorageReference> items) {
         palabras.add(palabra1);
         palabras.add(palabra2);
@@ -212,9 +215,6 @@ View.OnClickListener onButtonClickListener = new View.OnClickListener() {
         containers.add(contain4);
 
 
-
-
-
         for (int i = 0; i < 4; i++) {
 
             randomVideo(videos, diccBotonesNombres, opciones.get(i));
@@ -222,22 +222,21 @@ View.OnClickListener onButtonClickListener = new View.OnClickListener() {
     }
 
     private void randomVideo(List<VideoView> videos, HashMap diccBotonesNombres, StorageReference optionName) {
-        int ran =  (int) (Math.random() * (videos.size()));
+        int ran = (int) (Math.random() * (videos.size()));
         VideoView video = videos.get(ran);
         while (!diccBotonesNombres.isEmpty() && diccBotonesNombres.containsKey(video)) {
-             ran =  (int) (Math.random() * (videos.size()));
+            ran = (int) (Math.random() * (videos.size()));
             video = videos.get(ran);
         }
         addUrlToVideo(video, optionName);
         diccBotonesNombres.put(video, optionName);
         String answerTotalName = optionName.getName();
-        String answerName = answerTotalName.substring(0,answerTotalName.length()-4);
-        indexedAnswers.put(ran,answerName);
-
-
+        String answerName = answerTotalName.substring(0, answerTotalName.length() - 4);
+        indexedAnswers.put(ran, answerName);
 
 
     }
+
     private void addUrlToVideo(VideoView video, StorageReference item) {
         item.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
@@ -269,14 +268,13 @@ View.OnClickListener onButtonClickListener = new View.OnClickListener() {
     }
 
 
-
-    View.OnLongClickListener longClickListener = new View.OnLongClickListener(){
+    View.OnLongClickListener longClickListener = new View.OnLongClickListener() {
 
         @Override
         public boolean onLongClick(View view) {
-            ClipData data = ClipData.newPlainText("","");
+            ClipData data = ClipData.newPlainText("", "");
             View.DragShadowBuilder myShadowBuilder = new View.DragShadowBuilder(view);
-            view.startDrag(data, myShadowBuilder,view,0);
+            view.startDrag(data, myShadowBuilder, view, 0);
             return true;
         }
     };
@@ -286,50 +284,46 @@ View.OnClickListener onButtonClickListener = new View.OnClickListener() {
         public boolean onDrag(View v, DragEvent event) {
             TextView x = (TextView) v;
             int dragEvent = event.getAction();
-            switch (dragEvent){
+            switch (dragEvent) {
                 case DragEvent.ACTION_DRAG_ENTERED: {
 
                     break;
                 }
-                case DragEvent.ACTION_DRAG_EXITED:{
+                case DragEvent.ACTION_DRAG_EXITED: {
                     break;
                 }
-                case DragEvent.ACTION_DROP:{
-                    try{
-                        TextView view  =(TextView) event.getLocalState();
+                case DragEvent.ACTION_DROP: {
+                    try {
+                        TextView view = (TextView) event.getLocalState();
                         System.out.println("Obtenido");
                         /* Le asigna una llave al contain */
-                         int containerKey = containers.indexOf(x);
-                         if (indexedContainInverse.containsKey(view)){
-                             int delkey = indexedContainInverse.get(view);
-                             System.out.println("Removiendo: " + delkey+" + "+indexedContain.get(delkey));
-                             indexedContain.remove(delkey);
-                             indexedContainInverse.remove(view);
-                         }
+                        int containerKey = containers.indexOf(x);
+                        if (indexedContainInverse.containsKey(view)) {
+                            int delkey = indexedContainInverse.get(view);
+                            System.out.println("Removiendo: " + delkey + " + " + indexedContain.get(delkey));
+                            indexedContain.remove(delkey);
+                            indexedContainInverse.remove(view);
+                        }
 
-                        if (indexedContain.containsKey(containerKey)){
+                        if (indexedContain.containsKey(containerKey)) {
                             TextView palabraDentro = indexedContain.get(containerKey);
                             /* Si hay una palabra dentro, la mueve a su posición original*/
                             palabraDentro.setX(xCoordinates.get(palabras.indexOf(palabraDentro)));
                             palabraDentro.setY(yCoordinates.get(palabras.indexOf(palabraDentro)));
                             indexedContainInverse.remove(palabraDentro);
                         }
-                        System.out.println("Poniendo: "+ containerKey +  " + "+view.getText());
-                        indexedContain.put(containerKey,view);
+                        System.out.println("Poniendo: " + containerKey + " + " + view.getText());
+                        indexedContain.put(containerKey, view);
                         indexedContainInverse.put(view, containerKey);
 
-                        view.setX(x.getX()+5);
-                        view.setY(x.getY()+5);
+                        view.setX(x.getX() + 5);
+                        view.setY(x.getY() + 5);
                         view.bringToFront();
-                        
+
 
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-
-
-
-
 
 
                     break;
@@ -340,6 +334,7 @@ View.OnClickListener onButtonClickListener = new View.OnClickListener() {
             return true;
         }
     };
+
     @Override
     public void onBackPressed() {
         //super.onBackPressed();

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+
     android:visibility="visible"
     tools:context=".Practica.Parejas">
 
@@ -23,11 +23,11 @@
         android:layout_width="120dp"
         android:layout_height="40dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="56dp"
-        android:layout_marginRight="56dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
         android:background="@drawable/button_animator_practica"
-        android:textColor="#009688"
-        android:textColorHighlight="#009688"
+
+
         android:textSize="24sp"
         app:autoSizeTextType="uniform"
         app:layout_constraintEnd_toEndOf="parent"
@@ -41,7 +41,7 @@
         android:layout_marginLeft="60dp"
         android:layout_marginTop="32dp"
         android:background="@drawable/button_animator_practica"
-        android:textColor="#009688"
+
         android:textSize="24sp"
         app:autoSizeTextType="uniform"
         app:layout_constraintStart_toStartOf="parent"
@@ -88,7 +88,7 @@
         android:gravity="center_horizontal|center_vertical"
         android:shadowColor="#332D2D"
         android:text="Palabra1"
-        android:textColor="#FFFFFF"
+        android:backgroundTint="@color/color1"
         android:textSize="18sp"
         app:autoSizeTextType="uniform"
         app:layout_constraintStart_toStartOf="parent"
@@ -96,6 +96,7 @@
 
     <TextView
         android:id="@+id/palabra2"
+        android:backgroundTint="@color/color2"
         android:layout_width="115dp"
         android:layout_height="35dp"
         android:layout_marginStart="244dp"
@@ -104,8 +105,8 @@
         android:background="@drawable/round"
         android:gravity="center_horizontal|center_vertical"
         android:hapticFeedbackEnabled="false"
-        android:text="Palabra1"
-        android:textColor="#FFFFFF"
+        android:text="Palabra2"
+
         android:textIsSelectable="false"
         android:textSize="18sp"
         app:autoSizeTextType="uniform"
@@ -122,7 +123,7 @@
         android:background="@drawable/round"
         android:gravity="center"
         android:text="Palabra3"
-        android:textColor="#FFFFFF"
+        android:backgroundTint="@color/color3"
         android:textSize="18sp"
         app:autoSizeTextType="uniform"
         app:layout_constraintBottom_toTopOf="@+id/video1Pairs"
@@ -138,7 +139,7 @@
         android:background="@drawable/round"
         android:gravity="center"
         android:text="Palabra4"
-        android:textColor="#FFFFFF"
+        android:backgroundTint="@color/color4"
         android:textSize="18sp"
         app:autoSizeTextType="uniform"
         app:layout_constraintStart_toStartOf="parent"
@@ -152,7 +153,7 @@
         android:layout_marginLeft="60dp"
         android:layout_marginTop="12dp"
         android:background="@drawable/button_animator_practica"
-        android:textColor="#009688"
+
         android:textSize="24sp"
         app:autoSizeTextType="uniform"
         app:layout_constraintStart_toStartOf="parent"
@@ -166,7 +167,7 @@
         android:layout_marginEnd="52dp"
         android:layout_marginRight="52dp"
         android:background="@drawable/button_animator_practica"
-        android:textColor="#009688"
+
         android:textSize="24sp"
         app:autoSizeTextType="uniform"
         app:layout_constraintEnd_toEndOf="parent"
