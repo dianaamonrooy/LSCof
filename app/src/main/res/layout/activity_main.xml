@@ -6,22 +6,38 @@
     android:layout_height="match_parent"
     tools:context=".actividades.MainActivity">
 
-    <TableRow
+    <ImageView
+        android:id="@+id/imageView4"
+        android:scaleType="centerCrop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.364">
+        app:srcCompat="@drawable/bgpic" />
+
+    <TableRow
+        android:id="@+id/tableRow3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.525">
 
         <Button
             android:id="@+id/inicioSesion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/round"
+            android:backgroundTint="@color/color1"
             android:onClick="irInicioSesion"
-            android:text="@string/iniciar_sesion" />
+            android:text="@string/iniciar_sesion"
+            app:backgroundTint="#ECB09A" />
 
         <Space
             android:layout_width="20dp"
@@ -31,7 +47,10 @@
             android:id="@+id/registro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/round"
+            android:backgroundTint="#80A2D2FF"
             android:onClick="irIRegistro"
-            android:text="@string/registro" />
+            android:text="@string/registro"
+            app:backgroundTint="@color/color2" />
     </TableRow>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,6 +7,9 @@ public class User {
     private String location;
     private String aprende_practica;
     private String url;
+    private String nombre;
+    private String apellidos;
+
 
     public String getId() {
         return Id;
@@ -47,6 +50,7 @@ public class User {
     public void setAprende_practica(String aprende_practica) {
         this.aprende_practica = aprende_practica;
     }
+
     public String getUrl() {
         return url;
     }
@@ -55,7 +59,25 @@ public class User {
         this.url = url;
     }
 
-    public User(String id, String email, String date, String location, String aprende_practica, String url) {
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellidos() {
+        return apellidos;
+    }
+
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
+    }
+
+    public User(String nombre,String apellidos,String id, String email, String date, String location, String aprende_practica, String url) {
+        this.setNombre(nombre);
+        this.setApellidos(apellidos);
         this.setUrl(url);
         this.setAprende_practica(aprende_practica);
         this.setId(id);

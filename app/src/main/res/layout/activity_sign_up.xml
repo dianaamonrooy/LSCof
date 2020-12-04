@@ -5,10 +5,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".actividades.SignUp">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/bgpic" />
+
     <LinearLayout
-        android:layout_width="354dp"
-        android:layout_height="612dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:animateLayoutChanges="true"
+        android:gravity="center_horizontal"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -16,11 +29,27 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <EditText
+            android:id="@+id/nombreEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Nombre"
+            android:inputType="textEmailAddress" />
+
+        <EditText
+            android:id="@+id/apellidosEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Apellidos"
+            android:inputType="textEmailAddress" />
+
+        <EditText
             android:id="@+id/email_log_in"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="@string/entry_email"
+            android:hint="Correo electrónico"
             android:inputType="textEmailAddress" />
 
         <EditText
@@ -28,7 +57,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="@string/entry_password"
+            android:hint="Contraseña"
             android:inputType="textPassword" />
 
         <EditText
@@ -36,15 +65,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="@string/entry_password_again"
+            android:hint="Contraseña (nuevamente)"
             android:inputType="textPassword" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
 
         <Button
             android:id="@+id/boton_log_in"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/round"
             android:onClick="registro"
-            android:text="@string/registro" />
+            android:text="@string/registro"
+            app:backgroundTint="#8078AF93" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

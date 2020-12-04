@@ -40,6 +40,8 @@ public class UserInfo extends Fragment {
     private DatabaseReference myRef;
     private FirebaseAuth myAuth = FirebaseAuth.getInstance();
 
+    private TextView nombreTextView;
+    private TextView apellidosTextView;
     private TextView dateTextView;
     private TextView emailTextView;
     private Button logOut;
@@ -83,9 +85,11 @@ public class UserInfo extends Fragment {
         // Inflate the layout for this fragment
 
         vista = inflater.inflate(R.layout.fragment_user_info, container, false);
+        nombreTextView=vista.findViewById(R.id.text_view_nombre_user);
+        apellidosTextView=vista.findViewById(R.id.text_view_apellidos_user);
         dateTextView = vista.findViewById(R.id.view_last_login_date);
         emailTextView = vista.findViewById(R.id.view_email);
-        logOut= vista.findViewById(R.id.logOutUser);
+        logOut = vista.findViewById(R.id.logOutUser);
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -104,9 +108,13 @@ public class UserInfo extends Fragment {
                 if (dataSnapshot.exists()) {
                     String date = dataSnapshot.child("date").getValue().toString();
                     String email = dataSnapshot.child("email").getValue().toString();
+                    String nombre = dataSnapshot.child("nombre").getValue().toString();
+                    String apellidos = dataSnapshot.child("apellidos").getValue().toString();
 
                     dateTextView.setText(date);
                     emailTextView.setText(email);
+                    nombreTextView.setText(nombre);
+                    apellidosTextView.setText(apellidos);
                 }
 
                 //Log.d("Éxito", "Value is: " + value);

@@ -17,11 +17,17 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.Calendar;
 import java.util.Date;
+
 //comentario de prueba
 public class LogIn extends AppCompatActivity {
     private EditText emailEdit;
@@ -29,6 +35,11 @@ public class LogIn extends AppCompatActivity {
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference myRef;
+    private StorageReference mStorageRef;
+
+    private String nombre;
+    private String apellidos;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +48,7 @@ public class LogIn extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         emailEdit = findViewById(R.id.email_log_in);
         passwordEdit = findViewById(R.id.password_log_in);
-        if (mAuth.getCurrentUser()!=null){
+        if (mAuth.getCurrentUser() != null) {
             writeDatabase();
             startActivity(new Intent(getApplicationContext(), TabbedActivity.class));
             finish();
@@ -70,7 +81,7 @@ public class LogIn extends AppCompatActivity {
                             FirebaseUser user = mAuth.getCurrentUser();
                             updateUI(user);
                             writeDatabase();
-                            Intent i = new Intent (getApplicationContext(),TabbedActivity.class);
+                            Intent i = new Intent(getApplicationContext(), TabbedActivity.class);
                             startActivity(i);
                             finish();
                         } else {
@@ -90,18 +101,49 @@ public class LogIn extends AppCompatActivity {
     public void logIn(View view) {
         String email = emailEdit.getText().toString().trim();
         String password = passwordEdit.getText().toString().trim();
-        if (email.isEmpty() || password.isEmpty() ) {
+        if (email.isEmpty() || password.isEmpty()) {
             Toast.makeText(getApplicationContext(), "Ingresa los espacios vacíos",
                     Toast.LENGTH_SHORT).show();
         } else {
-            this.signInWithEmailAndPassword(email,password);
+            this.signInWithEmailAndPassword(email, password);
         }
     }
+
     public void writeDatabase() {
         Date logInDate = Calendar.getInstance().getTime();
-        User usuario = new User(mAuth.getUid().toString(), mAuth.getCurrentUser().getEmail(), logInDate.toString(),"location", "aprende_practica", "url");
+        getNombres_Apellidos();
+        User usuario = new User(nombre, apellidos, mAuth.getUid().toString(), mAuth.getCurrentUser().getEmail(), logInDate.toString(), "location", "aprende_practica", "url");
         myRef = database.getReference(usuario.getId());
         myRef.setValue(usuario);
 
+    }
+
+    public void getNombres_Apellidos() {
+        mAuth = FirebaseAuth.getInstance();
+        mStorageRef = FirebaseStorage.getInstance().getReference();
+        myRef = database.getReference().child(mAuth.getCurrentUser().getUid().toString());
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                if (dataSnapshot.exists()) {
+                    nombre = dataSnapshot.child("nombre").getValue().toString();
+                    apellidos = dataSnapshot.child("apellidos").getValue().toString();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+    }
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent (getApplicationContext(),MainActivity.class));
+        finish();
     }
 }

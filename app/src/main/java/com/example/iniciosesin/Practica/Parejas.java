@@ -241,9 +241,9 @@ public class Parejas extends AppCompatActivity {
         item.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
-                MediaController mediaController = new MediaController(Parejas.this);
+                /*MediaController mediaController = new MediaController(Parejas.this);
                 video.setMediaController(mediaController);
-                mediaController.setAnchorView(video);
+                mediaController.setAnchorView(video);*/
                 video.setVideoURI(uri);
                 video.requestFocus();
 

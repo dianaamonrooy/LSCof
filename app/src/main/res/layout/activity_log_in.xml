@@ -6,10 +6,22 @@
     android:layout_height="match_parent"
     tools:context=".actividades.LogIn">
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/bgpic" />
+
     <LinearLayout
-        android:layout_width="354dp"
-        android:layout_height="612dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:animateLayoutChanges="true"
+        android:gravity="center_horizontal"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -32,11 +44,17 @@
             android:hint="@string/entry_password"
             android:inputType="textPassword" />
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+
         <Button
             android:id="@+id/boton_log_in"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/round"
             android:onClick="logIn"
-            android:text="@string/iniciar_sesion" />
+            android:text="@string/iniciar_sesion"
+            app:backgroundTint="#B899CA" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -28,6 +28,8 @@ public class SignUp extends AppCompatActivity {
     private EditText emailEdit;
     private EditText passwordEdit;
     private EditText passwordAgainEdit;
+    private EditText nombre;
+    private EditText apellidos;
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference myRef;
 
@@ -39,6 +41,8 @@ public class SignUp extends AppCompatActivity {
         emailEdit = findViewById(R.id.email_log_in);
         passwordEdit = findViewById(R.id.password_log_in);
         passwordAgainEdit = findViewById(R.id.confirm_password);
+        nombre = findViewById(R.id.nombreEditText);
+        apellidos = findViewById(R.id.apellidosEditText);
         if (mAuth.getCurrentUser() != null) {
             writeDatabase();
             startActivity(new Intent(getApplicationContext(), TabbedActivity.class));
@@ -88,7 +92,9 @@ public class SignUp extends AppCompatActivity {
         String email = emailEdit.getText().toString().trim();
         String password = passwordEdit.getText().toString().trim();
         String passwordAgain = passwordAgainEdit.getText().toString().trim();
-        if (email.isEmpty() || password.isEmpty() || passwordAgain.isEmpty()) {
+        String nombreText = nombre.getText().toString().trim();
+        String apellidosText = apellidos.getText().toString().trim();
+        if (email.isEmpty() || password.isEmpty() || passwordAgain.isEmpty() || nombreText.isEmpty() || apellidosText.isEmpty()) {
             Toast.makeText(getApplicationContext(), "Ingresa los espacios vacíos",
                     Toast.LENGTH_SHORT).show();
         } else if (password.length() < 6) {
@@ -104,10 +110,15 @@ public class SignUp extends AppCompatActivity {
 
     public void writeDatabase() {
         Date logInDate = Calendar.getInstance().getTime();
-        User usuario = new User(mAuth.getUid().toString(), mAuth.getCurrentUser().getEmail(), logInDate.toString(),"location", "aprende_practica", "url");
+        User usuario = new User(nombre.getText().toString().trim(), apellidos.getText().toString().trim(), mAuth.getUid().toString(), mAuth.getCurrentUser().getEmail(), logInDate.toString(), "location", "aprende_practica", "url");
         myRef = database.getReference(usuario.getId());
         myRef.setValue(usuario);
 
+    }
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent (getApplicationContext(),MainActivity.class));
+        finish();
     }
 }
 
