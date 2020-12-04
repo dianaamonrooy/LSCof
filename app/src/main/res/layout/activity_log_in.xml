@@ -29,19 +29,25 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <EditText
+            app:backgroundTint="@color/black"
             android:id="@+id/email_log_in"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="@string/entry_email"
+            android:textColor="@color/black"
+            android:textColorHint="#80454444"
             android:inputType="textEmailAddress" />
 
         <EditText
+            app:backgroundTint="@color/black"
             android:id="@+id/password_log_in"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="@string/entry_password"
+            android:textColorHint="#80454444"
+            android:textColor="@color/black"
             android:inputType="textPassword" />
 
         <Space

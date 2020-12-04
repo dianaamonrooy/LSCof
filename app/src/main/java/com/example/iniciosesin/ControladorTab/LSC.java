@@ -345,7 +345,49 @@ public class LSC extends Fragment {
                 boton.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.numeros, 0, 0);
                 break;
             case "verbos":
-                boton.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.verbosss, 0, 0);
+                boton.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.verbos, 0, 0);
+                break;
+            case "aprender":
+                boton.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.aprende, 0, 0);
+                break;
+            case "arte y festividades":
+                boton.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.arte, 0, 0);
+                break;
+            case "aseo":
+                boton.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.aseo, 0, 0);
+                break;
+            case "características":
+                boton.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.caracteristicas, 0, 0);
+                break;
+            case "ciudad":
+                boton.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ciudad, 0, 0);
+                break;
+            case "deporte":
+                boton.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.deporte, 0, 0);
+                break;
+            case "hogar":
+                boton.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.hogar, 0, 0);
+                break;
+            case "relaciones personales":
+                boton.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.familia, 0, 0);
+                break;
+            case "salud":
+                boton.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.salud, 0, 0);
+                break;
+            case "tecnología":
+                boton.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.tecnologia, 0, 0);
+                break;
+            case "tiempo":
+                boton.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.tiempo, 0, 0);
+                break;
+            case "transporte":
+                boton.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.transporte, 0, 0);
+                break;
+            case "ubicación":
+                boton.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ubicacion, 0, 0);
+                break;
+            case "vestuario":
+                boton.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.vestimenta, 0, 0);
                 break;
             default:
                 boton.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.hands, 0, 0);
@@ -360,7 +402,46 @@ public class LSC extends Fragment {
             case "números":
                 return R.drawable.numeros;
             case "verbos":
-                return R.drawable.verbosss;
+                return R.drawable.verbos;
+            case "aprender":
+                return R.drawable.aprende;
+            case "arte y festividades":
+                return R.drawable.arte;
+            case "aseo":
+                return R.drawable.aseo;
+            case "características":
+                return R.drawable.caracteristicas;
+
+            case "ciudad":
+                return R.drawable.ciudad;
+
+            case "deporte":
+                return R.drawable.deporte;
+
+            case "hogar":
+                return R.drawable.hogar;
+
+            case "relaciones personales":
+                return R.drawable.familia;
+
+            case "salud":
+                return R.drawable.salud;
+
+            case "tecnología":
+                return R.drawable.tecnologia;
+
+            case "tiempo":
+                return R.drawable.tiempo;
+
+            case "transporte":
+                return R.drawable.transporte;
+
+            case "ubicación":
+                return R.drawable.ubicacion;
+
+            case "vestuario":
+                return R.drawable.vestimenta;
+
             default:
                 return R.drawable.hands;
 
