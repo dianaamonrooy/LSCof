@@ -1,8 +1,10 @@
 package com.example.iniciosesin.ControladorTab;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -10,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.iniciosesin.R;
@@ -45,6 +48,9 @@ public class UserInfo extends Fragment {
     private TextView dateTextView;
     private TextView emailTextView;
     private Button logOut;
+    private ProgressBar progressBar;
+    private int progresoNum;
+    private Button press;
 
     private View vista;
 
@@ -79,6 +85,7 @@ public class UserInfo extends Fragment {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -89,6 +96,26 @@ public class UserInfo extends Fragment {
         apellidosTextView=vista.findViewById(R.id.text_view_apellidos_user);
         dateTextView = vista.findViewById(R.id.view_last_login_date);
         emailTextView = vista.findViewById(R.id.view_email);
+        progressBar = vista.findViewById(R.id.progressBar);
+        press=vista.findViewById(R.id.pressButton);
+
+        progressBar.setMax(100);
+        progresoNum=0;
+
+        press.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                progresoNum+=10;
+                progressBar.setProgress(progresoNum,true);
+                if (progresoNum==100){
+                    progresoNum=0;
+                }
+
+            }
+        });
+
+
         logOut = vista.findViewById(R.id.logOutUser);
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override

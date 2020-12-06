@@ -30,54 +30,85 @@
 
         <EditText
             android:id="@+id/nombreEditText"
-            app:backgroundTint="@color/black"
-            android:textColor="@color/black"
-            android:textColorHint="#80454444"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
+            android:background="@drawable/round_border_edit_texts_sign_up"
             android:ems="10"
             android:hint="Nombre"
-            android:inputType="textEmailAddress" />
+            android:inputType="textEmailAddress"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textColor="@color/black"
+            android:textColorHint="#80454444"
+             />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
 
         <EditText
-            app:backgroundTint="@color/black"
+            android:background="@drawable/round_border_edit_texts_sign_up"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+
             android:id="@+id/apellidosEditText"
             android:textColor="@color/black"
             android:textColorHint="#80454444"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Apellidos"
             android:inputType="textEmailAddress" />
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
         <EditText
-            app:backgroundTint="@color/black"
+            android:background="@drawable/round_border_edit_texts_sign_up"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+
             android:id="@+id/email_log_in"
             android:textColor="@color/black"
             android:textColorHint="#80454444"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Correo electrónico"
             android:inputType="textEmailAddress" />
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
         <EditText
-            app:backgroundTint="@color/black"
+            android:background="@drawable/round_border_edit_texts_sign_up"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+
             android:id="@+id/password_log_in"
             android:textColor="@color/black"
             android:textColorHint="#80454444"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Contraseña"
             android:inputType="textPassword" />
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
         <EditText
-            app:backgroundTint="@color/black"
+            android:background="@drawable/round_border_edit_texts_sign_up"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+
             android:id="@+id/confirm_password"
             android:textColor="@color/black"
             android:textColorHint="#80454444"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Contraseña (nuevamente)"
