@@ -163,9 +163,9 @@ public class Video_palabras extends AppCompatActivity {
     }
 
     public void readData() {
-        /*new Thread(new Runnable() {
+        new Thread(new Runnable() {
             @Override
-            public void run() {*/
+            public void run() {
                 mStorageRef = FirebaseStorage.getInstance().getReference();
                 myRef = database.getReference().child(myAuth.getCurrentUser().getUid().toString());
                 myRef.addValueEventListener(new ValueEventListener() {
@@ -181,11 +181,12 @@ public class Video_palabras extends AppCompatActivity {
                             ref.listAll().addOnSuccessListener(new OnSuccessListener<ListResult>() {
                                 @Override
                                 public void onSuccess(ListResult listResult) {
-                                    randomOptions(listResult.getItems());
 
-                                    /*runOnUiThread(new Runnable() {
+
+                                    runOnUiThread(new Runnable() {
                                         @Override
-                                        public void run() {*/
+                                        public void run() {
+                                            randomOptions(listResult.getItems());
                                             rightOptionButton.setOnClickListener(new View.OnClickListener() {
                                                 @Override
                                                 public void onClick(View v) {
@@ -206,8 +207,8 @@ public class Video_palabras extends AppCompatActivity {
                                     });
 
                                 }
-                            /*});
-                        }*/
+                            });
+                        }
                     }
 
                     @Override
@@ -218,6 +219,6 @@ public class Video_palabras extends AppCompatActivity {
                 });
 
             }
-        /*}).start();
-    }*/
+        }).start();
+    }
 }
