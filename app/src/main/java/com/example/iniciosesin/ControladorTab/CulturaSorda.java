@@ -1,14 +1,19 @@
 package com.example.iniciosesin.ControladorTab;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.iniciosesin.R;
+import com.example.iniciosesin.interfaces_cultura.ComunicacionFragments;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -21,7 +26,7 @@ import java.util.ArrayList;
  * Use the {@link CulturaSorda#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CulturaSorda extends Fragment {
+public class CulturaSorda extends Fragment{
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -31,6 +36,11 @@ public class CulturaSorda extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    View vista;
+    Activity actividad;
+    CardView cardLeyes, cardLS, cardAprenderMas;
+    ComunicacionFragments interfaceComunicacionFragments;
 
     public CulturaSorda() {
         // Required empty public constructor
@@ -67,6 +77,47 @@ public class CulturaSorda extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_cultura_sorda, container, false);
+        vista = inflater.inflate(R.layout.fragment_cultura_sorda, container, false);
+
+        cardLeyes = vista.findViewById(R.id.leyes);
+        cardLS = vista.findViewById(R.id.signlanguage);
+        cardAprenderMas = vista.findViewById(R.id.aprendemas);
+
+        cardLeyes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "Prueba de click en leyes front", Toast.LENGTH_SHORT).show();
+                /*interfaceComunicacionFragments.iniciarLeyes();*/
+            }
+        });
+
+        cardLS.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "Prueba de click en lenguasenas front", Toast.LENGTH_SHORT).show();
+               /* interfaceComunicacionFragments.iniciarLS();*/
+            }
+        });
+
+        cardAprenderMas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "Prueba de click en aprendermas front", Toast.LENGTH_SHORT).show();
+                /*interfaceComunicacionFragments.iniciarAprenderMas();*/
+            }
+        });
+
+        return vista;
     }
+
+/*    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof Activity){
+            actividad = (Activity) context;
+            interfaceComunicacionFragments= (ComunicacionFragments) actividad;
+        }
+    }*/
+
+
 }

@@ -5,11 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.iniciosesin.R;
+import com.example.iniciosesin.interfaces_cultura.ComunicacionFragments;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class MainActivity extends AppCompatActivity {
+public class   MainActivity extends AppCompatActivity implements ComunicacionFragments {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,4 +37,18 @@ public class MainActivity extends AppCompatActivity {
         finish();
     }
 
+    @Override
+    public void iniciarLeyes() {
+        Toast.makeText(getApplicationContext(), "Prueba de click en leyes", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void iniciarLS() {
+        Toast.makeText(getApplicationContext(), "Prueba de click en lenguas", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void iniciarAprenderMas() {
+        Toast.makeText(getApplicationContext(), "Prueba de click en aprenderm", Toast.LENGTH_SHORT).show();
+    }
 }
