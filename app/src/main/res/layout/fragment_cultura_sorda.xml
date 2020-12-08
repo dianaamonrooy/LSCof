@@ -10,9 +10,9 @@
     <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="44dp"
         android:gravity="center_horizontal"
-        android:text="CULTURA SORDA"
+        android:text="Cultura Sorda"
         android:textSize="24sp" />
 
     <ScrollView
@@ -24,12 +24,12 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-        <androidx.cardview.widget.CardView
+            <androidx.cardview.widget.CardView
                 android:id="@+id/aprendemas"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_margin="16dp"
-                app:cardBackgroundColor="@color/color4"
+                app:cardBackgroundColor="#DBAE9E"
                 app:cardCornerRadius="20dp">
 
                 <RelativeLayout
@@ -72,7 +72,8 @@
                         android:layout_marginEnd="0dp"
                         android:layout_marginRight="0dp"
                         android:layout_marginBottom="-1dp"
-                        android:text="\n\nSi quieres reforzar tu aprendizaje, entra aquí."/>
+                        android:textColor="#575656"
+                        android:text="\n\nSi quieres reforzar tu aprendizaje, entra aquí." />
 
 
                 </RelativeLayout>
@@ -126,6 +127,7 @@
                         android:layout_marginEnd="0dp"
                         android:layout_marginRight="0dp"
                         android:layout_marginBottom="-1dp"
+                        android:textColor="#575656"
                         android:text="\n¡Un poco de historia!
                         \nNunca está de más saber un poco del proceso de
                         desarrollo de esta lengua"/>
@@ -182,6 +184,7 @@
                     android:layout_marginEnd="0dp"
                     android:layout_marginRight="0dp"
                     android:layout_marginBottom="-1dp"
+                    android:textColor="#575656"
                     android:text="\nAprende un poco de las leyes que existen en
                     Colombia para velar por los
                     derechos de las personas con discapacidad auditiva"/>

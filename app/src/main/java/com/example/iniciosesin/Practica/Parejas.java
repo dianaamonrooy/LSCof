@@ -10,6 +10,7 @@ import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.provider.Settings;
 import android.util.Log;
@@ -18,6 +19,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,6 +35,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.ListResult;
 import com.google.firebase.storage.StorageReference;
+import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import org.w3c.dom.Text;
 
@@ -72,12 +75,17 @@ public class Parejas extends AppCompatActivity {
     private TextView contain4;
     private Button buttonComprobar;
     private List<StorageReference> options = new ArrayList<>();
+    private ImageView exit;
+
+    private int errores,aciertos;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parejas);
+        errores = getIntent().getExtras().getInt("errores");
+        aciertos = getIntent().getExtras().getInt("aciertos");
         palabra1 = findViewById(R.id.palabra1);
         palabra2 = findViewById(R.id.palabra2);
         palabra3 = findViewById(R.id.palabra3);
@@ -99,7 +107,23 @@ public class Parejas extends AppCompatActivity {
         contain2.setOnDragListener(dragListener);
         contain3.setOnDragListener(dragListener);
         contain4.setOnDragListener(dragListener);
+        Video_palabras.addAnimation(buttonComprobar);
         buttonComprobar.setOnClickListener(onButtonClickListener);
+
+
+        exit = findViewById(R.id.exitParejas);
+        PushDownAnim.setPushDownAnimTo(exit).setScale(PushDownAnim.MODE_SCALE,0.89f).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                recuento();
+            }
+        });
+        /*exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                recuento();
+            }
+        });*/
 
         mStorageRef = FirebaseStorage.getInstance().getReference();
         myRef = database.getReference().child(myAuth.getCurrentUser().getUid().toString());
@@ -164,8 +188,10 @@ public class Parejas extends AppCompatActivity {
             System.out.println(prueba);
             if (prueba) {
                 x.setBackgroundResource(buttonroundcorrect);
+
             } else {
                 x.setBackgroundResource(buttonroundempty);
+                errores++;
                 correcto = false;
 
 
@@ -173,7 +199,14 @@ public class Parejas extends AppCompatActivity {
         }
         if (correcto) {
             Toast.makeText(Parejas.this, "Respuesta Correcta", Toast.LENGTH_SHORT).show();
-            Video_palabras.restart(getApplicationContext());
+            aciertos+=4;
+            Intent i = new Intent(getApplicationContext(),Video_palabras.class);
+            i.putExtra("errores",errores);
+            i.putExtra("aciertos",aciertos);
+            startActivity(i);
+            finish();
+
+
         }
     }
 
@@ -339,6 +372,24 @@ public class Parejas extends AppCompatActivity {
     public void onBackPressed() {
         //super.onBackPressed();
         Video_palabras.restart(getApplicationContext());
+
+    }
+    public void recuento(){
+
+        new CountDownTimer(5000, 2500) {
+
+            @Override
+            public void onTick(long millisUntilFinished) {
+                Toast.makeText(getApplicationContext(),"Tuviste:\n"+aciertos+" aciertos.\n"+errores+" errores.",Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onFinish() {
+                // do something end times 1s
+                Video_palabras.restart(getApplicationContext());
+            }
+
+        }.start();
 
     }
 }

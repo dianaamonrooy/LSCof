@@ -40,6 +40,7 @@ import com.takusemba.spotlight.CustomTarget;
 import com.takusemba.spotlight.OnSpotlightEndedListener;
 import com.takusemba.spotlight.OnSpotlightStartedListener;
 import com.takusemba.spotlight.Spotlight;
+import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -275,6 +276,12 @@ public class LSC extends Fragment {
                                     Animation scaleUp, scaleDown;
                                     scaleUp = AnimationUtils.loadAnimation(getActivity(), R.anim.scale_up);
                                     scaleDown = AnimationUtils.loadAnimation(getActivity(), R.anim.scale_up);
+                                    PushDownAnim.setPushDownAnimTo(aprende_boton,practica_boton).setScale(PushDownAnim.MODE_SCALE,0.89f).setOnTouchEvent(new View.OnTouchListener() {
+                                        @Override
+                                        public boolean onTouch(View v, MotionEvent event) {
+                                            return false;
+                                        }
+                                    });
                                     aprende_boton.setOnTouchListener(new View.OnTouchListener() {
                                         @Override
                                         public boolean onTouch(View v, MotionEvent event) {

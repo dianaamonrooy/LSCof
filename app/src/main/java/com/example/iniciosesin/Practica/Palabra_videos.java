@@ -6,16 +6,19 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.iniciosesin.R;
 import com.example.iniciosesin.actividades.TabbedActivity;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -28,6 +31,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.ListResult;
 import com.google.firebase.storage.StorageReference;
+import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -56,11 +60,20 @@ public class Palabra_videos extends AppCompatActivity {
     private Button boton2;
     private Button boton3;
     private Button boton4;
+    private ImageView exit;
+
+    private LottieAnimationView tick;
+    private LottieAnimationView cross;
+
+    private int errores,aciertos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_palabra_videos);
+        aciertos= getIntent().getExtras().getInt("aciertos");
+        errores = getIntent().getExtras().getInt("errores");
+        System.out.println("Estos son los errores: "+ errores);
         palabra = findViewById(R.id.chosen_word_palabra_videos);
         video1 = findViewById(R.id.video1_palabra_videos);
         video2 = findViewById(R.id.video2_palabra_videos);
@@ -72,6 +85,25 @@ public class Palabra_videos extends AppCompatActivity {
         boton2 = findViewById(R.id.boton_opcion2);
         boton3 = findViewById(R.id.boton_opcion3);
         boton4 = findViewById(R.id.boton_opcion4);
+
+        tick = findViewById(R.id.tickImagePalabraVideos);
+        tick.setVisibility(View.INVISIBLE);
+        cross = findViewById(R.id.crossImagePalabraVideos);
+        cross.setVisibility(View.INVISIBLE);
+
+        exit = findViewById(R.id.exitPalabraVideos);
+        PushDownAnim.setPushDownAnimTo(exit).setScale(PushDownAnim.MODE_SCALE,0.89f).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                recuento();
+            }
+        });
+        /*exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                recuento();
+            }
+        });*/
 
 
         mStorageRef = FirebaseStorage.getInstance().getReference();
@@ -90,23 +122,62 @@ public class Palabra_videos extends AppCompatActivity {
                         @Override
                         public void onSuccess(ListResult listResult) {
                             randomOptions(listResult.getItems());
+                            Video_palabras.addAnimation(rightOptionVideo);
                             rightOptionVideo.setOnTouchListener(new View.OnTouchListener() {
                                 @Override
                                 public boolean onTouch(View v, MotionEvent event) {
-                                    Toast.makeText(Palabra_videos.this, "Respuesta correcta", Toast.LENGTH_SHORT).show();
-                                    finishAffinity();
-                                    startActivity(new Intent(getApplicationContext(), Parejas.class));
-                                    //startActivity(new Intent (getApplicationContext(),TabbedActivity.class));
-                                    //finish();
+                                    //Toast.makeText(Palabra_videos.this, "Respuesta correcta", Toast.LENGTH_SHORT).show();
+                                    aciertos++;
+                                    tick.setVisibility(View.VISIBLE);
+                                    tick.playAnimation();
+
+                                    new CountDownTimer(1000, 1000) {
+
+                                        @Override
+                                        public void onTick(long millisUntilFinished) {
+                                            // do something after 1s
+                                        }
+
+                                        @Override
+                                        public void onFinish() {
+                                            // do something end times 1s
+                                            finishAffinity();
+                                            Intent ii = new Intent(getApplicationContext(), Parejas.class);
+                                            ii.putExtra("errores",errores);
+                                            ii.putExtra("aciertos",aciertos);
+                                            startActivity(ii);
+                                        }
+
+                                    }.start();
                                     return false;
                                 }
                             });
 
                             for (VideoView video : wrongOptionVideos) {
+                                Video_palabras.addAnimation(video);
                                 video.setOnTouchListener(new View.OnTouchListener() {
                                     @Override
                                     public boolean onTouch(View v, MotionEvent event) {
-                                        Toast.makeText(Palabra_videos.this, "Respuesta incorrecta", Toast.LENGTH_SHORT).show();
+
+                                        //Toast.makeText(Palabra_videos.this, "Respuesta incorrecta", Toast.LENGTH_SHORT).show();
+                                        cross.setVisibility(View.VISIBLE);
+                                        cross.playAnimation();
+
+                                        new CountDownTimer(1000, 1000) {
+
+                                            @Override
+                                            public void onTick(long millisUntilFinished) {
+                                                // do something after 1s
+                                            }
+
+                                            @Override
+                                            public void onFinish() {
+                                                // do something end times 1s
+                                                errores ++;
+                                                cross.setVisibility(View.INVISIBLE);
+                                            }
+
+                                        }.start();
                                         return false;
                                     }
                                 });
@@ -212,6 +283,24 @@ public class Palabra_videos extends AppCompatActivity {
     public void onBackPressed() {
         //super.onBackPressed();
         Video_palabras.restart(getApplicationContext());
+
+    }
+    public void recuento(){
+
+        new CountDownTimer(5000, 2500) {
+
+            @Override
+            public void onTick(long millisUntilFinished) {
+                Toast.makeText(getApplicationContext(),"Tuviste:\n"+aciertos+" aciertos.\n"+errores+" errores.",Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onFinish() {
+                // do something end times 1s
+                Video_palabras.restart(getApplicationContext());
+            }
+
+        }.start();
 
     }
 }

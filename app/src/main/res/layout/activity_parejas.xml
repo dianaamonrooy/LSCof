@@ -7,6 +7,17 @@
 
     android:visibility="visible"
     tools:context=".Practica.Parejas">
+    <ImageView
+        android:id="@+id/exitParejas"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.044"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.026"
+        app:srcCompat="@drawable/cross" />
 
     <VideoView
         android:id="@+id/video3Pairs"
@@ -179,6 +190,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:background="@drawable/round"
+        app:backgroundTint="@color/color2"
         android:shadowColor="#00FFFFFF"
         android:text="Comprobar"
         android:textColor="#FFFFFF"

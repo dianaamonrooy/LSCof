@@ -7,9 +7,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.iniciosesin.Practica.Video_palabras;
 import com.example.iniciosesin.R;
 import com.example.iniciosesin.User;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -32,6 +34,7 @@ public class SignUp extends AppCompatActivity {
     private EditText apellidos;
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference myRef;
+    private Button signUp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +46,14 @@ public class SignUp extends AppCompatActivity {
         passwordAgainEdit = findViewById(R.id.confirm_password);
         nombre = findViewById(R.id.nombreEditText);
         apellidos = findViewById(R.id.apellidosEditText);
+        signUp = findViewById(R.id.boton_sign_up);
+        Video_palabras.addAnimation(signUp);
+        signUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                registro(signUp);
+            }
+        });
         if (mAuth.getCurrentUser() != null) {
             writeDatabase();
             startActivity(new Intent(getApplicationContext(), TabbedActivity.class));

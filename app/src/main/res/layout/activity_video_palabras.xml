@@ -7,6 +7,18 @@
     tools:context=".Practica.Video_palabras">
 
 
+    <ImageView
+        android:id="@+id/exitVideoPalabras"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.044"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.026"
+        app:srcCompat="@drawable/cross" />
+
     <FrameLayout
         android:id="@+id/video_view_container"
         android:adjustViewBounds="true"
@@ -94,5 +106,30 @@
             android:background="@drawable/round"
             app:backgroundTint="@color/color4" />
     </TableRow>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/tickImageVideoPalabras"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.924"
+        app:lottie_rawRes="@raw/checkbutton"
+        app:lottie_url="https://assets7.lottiefiles.com/temp/lf20_5tgmik.json" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/crossImageVideoPalabras"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.924"
+        app:lottie_url="https://assets10.lottiefiles.com/temp/lf20_yYJhpG.json" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
