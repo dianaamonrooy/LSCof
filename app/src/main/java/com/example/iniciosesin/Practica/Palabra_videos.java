@@ -7,20 +7,17 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.iniciosesin.R;
-import com.example.iniciosesin.actividades.TabbedActivity;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -45,7 +42,7 @@ public class Palabra_videos extends AppCompatActivity {
     private DatabaseReference myRef;
     private String nombreCarpeta;
 
-    private TextView palabra;
+    private TextView palabra,aciertosTextView,erroresTextView;
     private VideoView video1;
     private VideoView video2;
     private VideoView video3;
@@ -65,7 +62,7 @@ public class Palabra_videos extends AppCompatActivity {
     private LottieAnimationView tick;
     private LottieAnimationView cross;
 
-    private int errores,aciertos;
+    private int errores,aciertos,progreso,nivel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +70,11 @@ public class Palabra_videos extends AppCompatActivity {
         setContentView(R.layout.activity_palabra_videos);
         aciertos= getIntent().getExtras().getInt("aciertos");
         errores = getIntent().getExtras().getInt("errores");
+        aciertosTextView=findViewById(R.id.aciertos_parejas);
+        erroresTextView=findViewById(R.id.errores_parejas);
+        Video_palabras.updateTextView(aciertosTextView,aciertos);
+        Video_palabras.updateTextView(erroresTextView,errores);
+
         System.out.println("Estos son los errores: "+ errores);
         palabra = findViewById(R.id.chosen_word_palabra_videos);
         video1 = findViewById(R.id.video1_palabra_videos);
@@ -114,6 +116,8 @@ public class Palabra_videos extends AppCompatActivity {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 if (dataSnapshot.exists()) {
+                    progreso = Integer.parseInt(dataSnapshot.child("progreso").getValue().toString());
+                    nivel = Integer.parseInt(dataSnapshot.child("nivel").getValue().toString());
                     nombreCarpeta = dataSnapshot.child("location").getValue().toString();
                     mStorageRef = FirebaseStorage.getInstance().getReference();
                     StorageReference ref = mStorageRef.child("videos").child(nombreCarpeta);
@@ -127,7 +131,9 @@ public class Palabra_videos extends AppCompatActivity {
                                 @Override
                                 public boolean onTouch(View v, MotionEvent event) {
                                     //Toast.makeText(Palabra_videos.this, "Respuesta correcta", Toast.LENGTH_SHORT).show();
+                                    rightOptionVideo.setEnabled(false);
                                     aciertos++;
+                                    Video_palabras.updateTextView(aciertosTextView,aciertos);
                                     tick.setVisibility(View.VISIBLE);
                                     tick.playAnimation();
 
@@ -149,6 +155,7 @@ public class Palabra_videos extends AppCompatActivity {
                                         }
 
                                     }.start();
+                                    rightOptionVideo.setOnTouchListener(null);
                                     return false;
                                 }
                             });
@@ -160,8 +167,10 @@ public class Palabra_videos extends AppCompatActivity {
                                     public boolean onTouch(View v, MotionEvent event) {
 
                                         //Toast.makeText(Palabra_videos.this, "Respuesta incorrecta", Toast.LENGTH_SHORT).show();
+                                        errores ++;
                                         cross.setVisibility(View.VISIBLE);
                                         cross.playAnimation();
+                                        Video_palabras.updateTextView(erroresTextView,errores);
 
                                         new CountDownTimer(1000, 1000) {
 
@@ -173,11 +182,11 @@ public class Palabra_videos extends AppCompatActivity {
                                             @Override
                                             public void onFinish() {
                                                 // do something end times 1s
-                                                errores ++;
                                                 cross.setVisibility(View.INVISIBLE);
                                             }
 
                                         }.start();
+                                        video.setOnTouchListener(null);
                                         return false;
                                     }
                                 });
@@ -286,8 +295,26 @@ public class Palabra_videos extends AppCompatActivity {
 
     }
     public void recuento(){
+        myRef = database.getReference().child(myAuth.getCurrentUser().getUid().toString());
 
-        new CountDownTimer(5000, 2500) {
+        int total = aciertos - errores;
+
+        int newProgreso = progreso + total;
+        if (newProgreso < 0) {
+            newProgreso = 0;
+        }
+        if (newProgreso > nivel * 10) {
+            nivel++;
+            newProgreso = nivel * 10 - newProgreso;
+        }
+
+
+        myRef.child("progreso").setValue(newProgreso);
+        myRef.child("nivel").setValue(nivel);
+        Video_palabras.restart(getApplicationContext());
+
+
+        /*new CountDownTimer(3000, 1500) {
 
             @Override
             public void onTick(long millisUntilFinished) {
@@ -300,7 +327,7 @@ public class Palabra_videos extends AppCompatActivity {
                 Video_palabras.restart(getApplicationContext());
             }
 
-        }.start();
+        }.start();*/
 
     }
 }

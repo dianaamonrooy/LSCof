@@ -150,7 +150,6 @@ public class BotonesVideos extends AppCompatActivity {
             @Override
             public void onSuccess(ListResult listResult) {
                 ButtonsNamesList = listResult;
-
                 models = new ArrayList<>();
                 nombresVideos = new ArrayList<>();
                 for (StorageReference video : listResult.getItems()) {

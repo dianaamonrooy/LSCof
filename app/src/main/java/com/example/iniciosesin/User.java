@@ -9,6 +9,8 @@ public class User {
     private String url;
     private String nombre;
     private String apellidos;
+    private int progreso;
+    private int  nivel;
 
 
     public String getId() {
@@ -75,7 +77,16 @@ public class User {
         this.apellidos = apellidos;
     }
 
-    public User(String nombre,String apellidos,String id, String email, String date, String location, String aprende_practica, String url) {
+    public int getProgreso() {
+        return progreso;
+    }
+
+    public void setProgreso(int progreso) {
+        this.progreso = progreso;
+    }
+
+
+    public User(String nombre,String apellidos,String id, String email, String date, String location, String aprende_practica, String url,int progreso,int nivel) {
         this.setNombre(nombre);
         this.setApellidos(apellidos);
         this.setUrl(url);
@@ -84,8 +95,16 @@ public class User {
         this.setEmail(email);
         this.setDate(date);
         this.setLocation(location);
+        this.setProgreso(progreso);
+        this.setNivel(nivel);
     }
 
 
+    public int getNivel() {
+        return nivel;
+    }
 
+    public void setNivel(int nivel) {
+        this.nivel = nivel;
+    }
 }

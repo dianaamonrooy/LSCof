@@ -1,7 +1,7 @@
 package com.example.iniciosesin.Practica;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.IntentCompat;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.ComponentName;
 import android.content.Context;
@@ -11,19 +11,18 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.MediaController;
-import android.widget.Toast;
+import android.widget.TextView;
 import android.widget.VideoView;
 
 import com.airbnb.lottie.LottieAnimationView;
-import com.example.iniciosesin.ControladorTab.LSC;
 import com.example.iniciosesin.R;
-import com.example.iniciosesin.actividades.TabbedActivity;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -56,10 +55,16 @@ public class Video_palabras extends AppCompatActivity {
     private Button boton3;
     private Button boton4;
     private ImageView exit;
+    private ConstraintLayout constraintLayout;
+
+    private int progreso;
+    private int nivel;
 
     private LottieAnimationView tick;
     private LottieAnimationView cross;
     private int errores, aciertos;
+
+    private TextView aciertosTextView, erroresTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,9 +79,13 @@ public class Video_palabras extends AppCompatActivity {
             aciertos = 0;
         }
 
+        aciertosTextView = findViewById(R.id.aciertos_parejas);
+        erroresTextView = findViewById(R.id.errores_parejas);
+        aciertosTextView.setText(Integer.toString(aciertos));
+        erroresTextView.setText(Integer.toString(errores));
 
         exit = findViewById(R.id.exitVideoPalabras);
-        PushDownAnim.setPushDownAnimTo(exit).setScale(PushDownAnim.MODE_SCALE,0.89f).setOnClickListener(new View.OnClickListener() {
+        PushDownAnim.setPushDownAnimTo(exit).setScale(PushDownAnim.MODE_SCALE, 0.89f).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 recuento();
@@ -89,7 +98,7 @@ public class Video_palabras extends AppCompatActivity {
             }
         });*/
 
-
+        constraintLayout = findViewById(R.id.constraintLayoutVideoPalabras);
         video = findViewById(R.id.video_en_video_palabras);
         boton1 = findViewById(R.id.boton_opcion1);
         boton2 = findViewById(R.id.boton_opcion2);
@@ -215,6 +224,8 @@ public class Video_palabras extends AppCompatActivity {
                         // whenever data at this location is updated.
                         if (dataSnapshot.exists()) {
                             nombreCarpeta = dataSnapshot.child("location").getValue().toString();
+                            progreso = Integer.parseInt(dataSnapshot.child("progreso").getValue().toString());
+                            nivel = Integer.parseInt(dataSnapshot.child("nivel").getValue().toString());
                             mStorageRef = FirebaseStorage.getInstance().getReference();
                             StorageReference ref = mStorageRef.child("videos").child(nombreCarpeta);
                             myRef = database.getReference().child(myAuth.getCurrentUser().getUid().toString());
@@ -235,7 +246,9 @@ public class Video_palabras extends AppCompatActivity {
                                             rightOptionButton.setOnClickListener(new View.OnClickListener() {
                                                 @Override
                                                 public void onClick(View v) {
+                                                    rightOptionButton.setEnabled(false);
                                                     aciertos++;
+                                                    updateTextView(aciertosTextView,aciertos);
                                                     tick.setVisibility(View.VISIBLE);
                                                     tick.playAnimation();
 
@@ -263,34 +276,13 @@ public class Video_palabras extends AppCompatActivity {
                                             });
                                             for (Button boton : wrongOptionButtons) {
                                                 addAnimation(boton);
-                                                /*PushDownAnim.setPushDownAnimTo(boton).setScale(PushDownAnim.MODE_SCALE,0.89f).setOnClickListener(new View.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(View v) {
-                                                        cross.setVisibility(View.VISIBLE);
-                                                        cross.playAnimation();
-
-                                                        new CountDownTimer(1000, 1000) {
-
-                                                            @Override
-                                                            public void onTick(long millisUntilFinished) {
-                                                                // do something after 1s
-                                                            }
-
-                                                            @Override
-                                                            public void onFinish() {
-                                                                // do something end times 1s
-                                                                errores++;
-                                                                cross.setVisibility(View.INVISIBLE);
-                                                            }
-
-                                                        }.start();
-                                                    }
-                                                });*/
                                                 boton.setOnClickListener(new View.OnClickListener() {
                                                     @Override
                                                     public void onClick(View v) {
                                                         cross.setVisibility(View.VISIBLE);
                                                         cross.playAnimation();
+                                                        errores++;
+                                                        updateTextView(erroresTextView,errores);
 
                                                         new CountDownTimer(1000, 1000) {
 
@@ -302,7 +294,6 @@ public class Video_palabras extends AppCompatActivity {
                                                             @Override
                                                             public void onFinish() {
                                                                 // do something end times 1s
-                                                                errores++;
                                                                 cross.setVisibility(View.INVISIBLE);
                                                             }
 
@@ -329,13 +320,74 @@ public class Video_palabras extends AppCompatActivity {
         }).start();
     }
 
-    public void recuento(){
+    public void recuento() {
+        myRef = database.getReference().child(myAuth.getCurrentUser().getUid().toString());
 
-        new CountDownTimer(5000, 2500) {
+        int total = aciertos - errores;
+
+        int newProgreso = progreso + total;
+        if (newProgreso < 0) {
+            newProgreso = 0;
+        }
+        if (newProgreso > nivel * 10) {
+            nivel++;
+            newProgreso = nivel * 10 - newProgreso;
+        }
+
+
+        myRef.child("progreso").setValue(newProgreso);
+        myRef.child("nivel").setValue(nivel);
+
+        restart(getApplicationContext());
+
+        /*Snackbar snackbar = Snackbar.make(constraintLayout, "Tuviste:\n" + aciertos + " aciertos y " + errores + " errores.", Snackbar.LENGTH_LONG);
+        snackbar.show();
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        restart(getApplicationContext());
+                    }
+                });
+
+            }
+        }, 3000);*/
+
+
+
+
+
+        /*new CountDownTimer(3000, 1500) {
 
             @Override
             public void onTick(long millisUntilFinished) {
-                Toast.makeText(getApplicationContext(),"Tuviste:\n"+aciertos+" aciertos.\n"+errores+" errores.",Toast.LENGTH_LONG).show();
+
+
+                //Toast.makeText(getApplicationContext(), "Tuviste:\n" + aciertos + " aciertos.\n" + errores + " errores.", Toast.LENGTH_LONG).show();
+
+            }
+
+            @Override
+            public void onFinish() {
+
+                restart(getApplicationContext());
+            }
+
+        }.start();*/
+
+
+        //restart(getApplicationContext());
+
+        /*new CountDownTimer(3000, 1500) {
+
+            @Override
+            public void onTick(long millisUntilFinished) {
+                //Toast.makeText(getApplicationContext(), "Tuviste:\n" + aciertos + " aciertos.\n" + errores + " errores.", Toast.LENGTH_LONG).show();
+
             }
 
             @Override
@@ -344,16 +396,21 @@ public class Video_palabras extends AppCompatActivity {
                 restart(getApplicationContext());
             }
 
-        }.start();
+        }.start();*/
 
     }
 
-    public static void addAnimation(View view){
-        PushDownAnim.setPushDownAnimTo(view).setScale(PushDownAnim.MODE_SCALE,0.89f).setOnClickListener(new View.OnClickListener() {
+    public static void addAnimation(View view) {
+        PushDownAnim.setPushDownAnimTo(view).setScale(PushDownAnim.MODE_SCALE, 0.89f).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
             }
         });
+    }
+
+    public static void updateTextView(TextView view, int number) {
+        view.setText(Integer.toString(number));
+
     }
 }

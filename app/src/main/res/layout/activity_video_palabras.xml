@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayoutVideoPalabras"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Practica.Video_palabras">
@@ -19,11 +20,72 @@
         app:layout_constraintVertical_bias="0.026"
         app:srcCompat="@drawable/cross" />
 
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="89dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.028">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="right">
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:srcCompat="@drawable/tickaciertos" />
+
+            <Space
+                android:layout_width="10dp"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:srcCompat="@drawable/crosserrores" />
+
+            <Space
+                android:layout_width="20dp"
+                android:layout_height="wrap_content" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="right">
+
+            <TextView
+                android:id="@+id/aciertos_parejas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <Space
+                android:layout_width="10dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/errores_parejas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <Space
+                android:layout_width="20dp"
+                android:layout_height="wrap_content" />
+        </TableRow>
+
+    </TableLayout>
+
     <FrameLayout
         android:id="@+id/video_view_container"
-        android:adjustViewBounds="true"
         android:layout_width="388dp"
         android:layout_height="268dp"
+        android:adjustViewBounds="true"
         android:background="@drawable/background_video_viewer"
         android:outlineProvider="background"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -33,11 +95,11 @@
         app:layout_constraintVertical_bias="0.193">
 
         <VideoView
-            android:adjustViewBounds="true"
             android:id="@+id/video_en_video_palabras"
             android:layout_width="357dp"
             android:layout_height="210dp"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            android:adjustViewBounds="true" />
     </FrameLayout>
 
     <TableRow
@@ -65,11 +127,11 @@
             android:layout_height="0dp" />
 
         <Button
-            android:textColor="@color/black"
             android:id="@+id/boton_opcion2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/round"
+            android:textColor="@color/black"
             app:backgroundTint="#80A2D2FF" />
 
     </TableRow>
@@ -87,11 +149,11 @@
         app:layout_constraintVertical_bias="0.835">
 
         <Button
-            android:textColor="@color/black"
             android:id="@+id/boton_opcion3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/round"
+            android:textColor="@color/black"
             app:backgroundTint="@color/color3" />
 
         <Space
@@ -99,11 +161,11 @@
             android:layout_height="0dp" />
 
         <Button
-            android:textColor="@color/black"
             android:id="@+id/boton_opcion4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/round"
+            android:textColor="@color/black"
             app:backgroundTint="@color/color4" />
     </TableRow>
 

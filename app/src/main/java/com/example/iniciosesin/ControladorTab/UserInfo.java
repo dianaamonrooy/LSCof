@@ -25,6 +25,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -56,6 +57,7 @@ public class UserInfo extends Fragment {
     private TextView apellidosTextView;
     private TextView dateTextView;
     private TextView emailTextView;
+    private TextView nivelTextView;
     private Button logOut;
     private ProgressBar progressBar;
     private int progresoNum;
@@ -101,31 +103,44 @@ public class UserInfo extends Fragment {
         // Inflate the layout for this fragment
 
         vista = inflater.inflate(R.layout.fragment_user_info, container, false);
-        nombreTextView=vista.findViewById(R.id.text_view_nombre_user);
-        apellidosTextView=vista.findViewById(R.id.text_view_apellidos_user);
+
+        nombreTextView = vista.findViewById(R.id.text_view_nombre_user);
+        apellidosTextView = vista.findViewById(R.id.text_view_apellidos_user);
         dateTextView = vista.findViewById(R.id.view_last_login_date);
         emailTextView = vista.findViewById(R.id.view_email);
         progressBar = vista.findViewById(R.id.progressBar);
-        press=vista.findViewById(R.id.pressButton);
+        //press = vista.findViewById(R.id.pressButton);
+        nivelTextView = vista.findViewById(R.id.nivel);
 
-        progressBar.setMax(100);
-        progresoNum=0;
 
-        press.setOnClickListener(new View.OnClickListener() {
+        //progressBar.setMax(100);
+        progresoNum = 0;
+
+        /*press.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                progresoNum+=10;
-                progressBar.setProgress(progresoNum,true);
-                if (progresoNum==100){
-                    progresoNum=0;
+                progresoNum += 10;
+                progressBar.setProgress(progresoNum, true);
+                if (progresoNum == 100) {
+                    progresoNum = 0;
                 }
 
             }
-        });
+        });*/
+
+
+        //myRef = database.getReference().child(myAuth.getCurrentUser().getUid().toString());
+        //myRef.child("progreso").setValue();
 
 
         logOut = vista.findViewById(R.id.logOutUser);
+        PushDownAnim.setPushDownAnimTo(logOut).setScale(PushDownAnim.MODE_SCALE, 0.89f).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -146,7 +161,14 @@ public class UserInfo extends Fragment {
                     String email = dataSnapshot.child("email").getValue().toString();
                     String nombre = dataSnapshot.child("nombre").getValue().toString();
                     String apellidos = dataSnapshot.child("apellidos").getValue().toString();
+                    int progreso = Integer.parseInt(dataSnapshot.child("progreso").getValue().toString());
+                    int nivel = Integer.parseInt(dataSnapshot.child("nivel").getValue().toString());
 
+
+                    progressBar.setMax(nivel * 10);
+                    progressBar.setProgress(progreso, true);
+
+                    nivelTextView.setText(Integer.toString(nivel));
                     dateTextView.setText(date);
                     emailTextView.setText(email);
                     nombreTextView.setText(nombre);
