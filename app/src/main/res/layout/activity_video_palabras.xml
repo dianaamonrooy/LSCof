@@ -18,7 +18,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.026"
-        app:srcCompat="@drawable/cross" />
+        app:srcCompat="@drawable/finish" />
 
     <TableLayout
         android:layout_width="match_parent"
@@ -116,11 +116,12 @@
 
         <Button
             android:id="@+id/boton_opcion1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="115dp"
+            android:layout_height="35dp"
             android:background="@drawable/round"
             android:textColor="@color/black"
-            app:backgroundTint="@color/color1" />
+            app:backgroundTint="@color/color1"
+            app:autoSizeTextType="uniform"/>
 
         <Space
             android:layout_width="80dp"
@@ -128,11 +129,12 @@
 
         <Button
             android:id="@+id/boton_opcion2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="115dp"
+            android:layout_height="35dp"
             android:background="@drawable/round"
             android:textColor="@color/black"
-            app:backgroundTint="#80A2D2FF" />
+            app:backgroundTint="#80A2D2FF"
+            app:autoSizeTextType="uniform"/>
 
     </TableRow>
 
@@ -150,11 +152,12 @@
 
         <Button
             android:id="@+id/boton_opcion3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="115dp"
+            android:layout_height="35dp"
             android:background="@drawable/round"
             android:textColor="@color/black"
-            app:backgroundTint="@color/color3" />
+            app:backgroundTint="@color/color3"
+            app:autoSizeTextType="uniform"/>
 
         <Space
             android:layout_width="80dp"
@@ -162,11 +165,12 @@
 
         <Button
             android:id="@+id/boton_opcion4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="115dp"
+            android:layout_height="35dp"
             android:background="@drawable/round"
             android:textColor="@color/black"
-            app:backgroundTint="@color/color4" />
+            app:backgroundTint="@color/color4"
+            app:autoSizeTextType="uniform"/>
     </TableRow>
 
     <com.airbnb.lottie.LottieAnimationView

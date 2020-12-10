@@ -79,7 +79,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.026"
-        app:srcCompat="@drawable/cross" />
+        app:srcCompat="@drawable/finish" />
 
     <VideoView
         android:id="@+id/video3Pairs"

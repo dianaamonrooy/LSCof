@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.iniciosesin.Practica.Video_palabras;
 import com.example.iniciosesin.R;
 import com.example.iniciosesin.popUps.PopUpShowVideos;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -208,6 +209,7 @@ public class BotonesVideos extends AppCompatActivity {
                             viewPager.setBackgroundColor(colors[colors.length-1]);
                         }*/
                         Button boton_reprod_video = findViewById(R.id.boton_video);
+                        Video_palabras.addAnimation(boton_reprod_video);
                         boton_reprod_video.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
