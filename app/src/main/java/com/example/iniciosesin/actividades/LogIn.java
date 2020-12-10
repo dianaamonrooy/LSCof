@@ -7,9 +7,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.iniciosesin.Practica.Video_palabras;
 import com.example.iniciosesin.R;
 import com.example.iniciosesin.User;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -40,11 +42,20 @@ public class LogIn extends AppCompatActivity {
     private String nombre;
     private String apellidos;
 
+    private Button logIn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
+        logIn = findViewById(R.id.boton_log_in);
+        Video_palabras.addAnimation(logIn);
+        logIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                logIn(logIn);
+            }
+        });
         mAuth = FirebaseAuth.getInstance();
         emailEdit = findViewById(R.id.email_log_in);
         passwordEdit = findViewById(R.id.password_log_in);
@@ -112,7 +123,7 @@ public class LogIn extends AppCompatActivity {
     public void writeDatabase() {
         Date logInDate = Calendar.getInstance().getTime();
         getNombres_Apellidos();
-        User usuario = new User(nombre, apellidos, mAuth.getUid().toString(), mAuth.getCurrentUser().getEmail(), logInDate.toString(), "location", "aprende_practica", "url");
+        User usuario = new User(nombre, apellidos, mAuth.getUid().toString(), mAuth.getCurrentUser().getEmail(), logInDate.toString(), "location", "aprende_practica", "url",0,1);
         myRef = database.getReference(usuario.getId());
         myRef.setValue(usuario);
 
@@ -141,9 +152,10 @@ public class LogIn extends AppCompatActivity {
 
 
     }
+
     @Override
     public void onBackPressed() {
-        startActivity(new Intent (getApplicationContext(),MainActivity.class));
+        startActivity(new Intent(getApplicationContext(), MainActivity.class));
         finish();
     }
 }

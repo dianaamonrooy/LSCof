@@ -40,6 +40,7 @@ import com.takusemba.spotlight.CustomTarget;
 import com.takusemba.spotlight.OnSpotlightEndedListener;
 import com.takusemba.spotlight.OnSpotlightStartedListener;
 import com.takusemba.spotlight.Spotlight;
+import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -170,11 +171,20 @@ public class LSC extends Fragment {
                         } else {
                             viewPager.setBackgroundColor(colors[colors.length - 1]);
                         }*/
+
                         Button aprende = vista.findViewById(R.id.aprende_lsc);
+                        Button practica = vista.findViewById(R.id.practica_lsc);
+                        PushDownAnim.setPushDownAnimTo(aprende, practica).setScale(PushDownAnim.MODE_SCALE, 0.89f).setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+
+                            }
+                        });
+
                         aprende.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                String titulo=models.get(position).getTitle();
+                                String titulo = models.get(position).getTitle();
                                 myRef.child("location").setValue(titulo);
                                 Intent i = new Intent(getActivity().getApplicationContext(), BotonesVideos.class);
                                 //i.putExtra("nombreCarpeta",titulo);
@@ -183,11 +193,12 @@ public class LSC extends Fragment {
 
                             }
                         });
-                        Button practica = vista.findViewById(R.id.practica_lsc);
+
+
                         practica.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                String titulo=models.get(position).getTitle();
+                                String titulo = models.get(position).getTitle();
                                 myRef.child("location").setValue(titulo);
                                 Intent i = new Intent(getActivity().getApplicationContext(), Video_palabras.class);
                                 //i.putExtra("nombreCarpeta",titulo);
@@ -214,7 +225,7 @@ public class LSC extends Fragment {
         return vista;
     }
 
-    public void showFolders(ListResult listResult, TableLayout tableLayout, View vista) {
+    /*public void showFolders(ListResult listResult, TableLayout tableLayout, View vista) {
 
         int i = 1;
         for (StorageReference carpeta : listResult.getPrefixes()) {
@@ -275,6 +286,18 @@ public class LSC extends Fragment {
                                     Animation scaleUp, scaleDown;
                                     scaleUp = AnimationUtils.loadAnimation(getActivity(), R.anim.scale_up);
                                     scaleDown = AnimationUtils.loadAnimation(getActivity(), R.anim.scale_up);
+                                    PushDownAnim.setPushDownAnimTo(aprende_boton,practica_boton).setScale(PushDownAnim.MODE_SCALE,0.89f).setOnTouchEvent(new View.OnTouchListener() {
+                                        @Override
+                                        public boolean onTouch(View v, MotionEvent event) {
+                                            return false;
+                                        }
+                                    });
+                                    aprende_boton.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+
+                                        }
+                                    });
                                     aprende_boton.setOnTouchListener(new View.OnTouchListener() {
                                         @Override
                                         public boolean onTouch(View v, MotionEvent event) {
@@ -329,12 +352,12 @@ public class LSC extends Fragment {
             chosenTableRow.addView(espacio);
             /*if (chosenTableRow.getChildCount() == 3) {
                 tableLayout.addView(chosenTableRow);
-            }*/
+            }
 
             i++;
 
         }
-    }
+    }*/
 
     public void setButtonIcon(Button boton, StorageReference carpeta) {
         switch (carpeta.getName().toLowerCase()) {
@@ -449,13 +472,14 @@ public class LSC extends Fragment {
 
     }
 
-    public void aprende(){
+    public void aprende() {
 
 
     }
-    public void practica(){
+
+    public void practica() {
 
     }
-
+    /**/
 
 }
