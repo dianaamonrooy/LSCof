@@ -2,6 +2,7 @@ package com.example.iniciosesin.ControladorTab;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.cardview.widget.CardView;
@@ -12,8 +13,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.iniciosesin.Aprende.BotonesVideos;
 import com.example.iniciosesin.R;
 import com.example.iniciosesin.interfaces_cultura.ComunicacionFragments;
+import com.example.iniciosesin.interfaces_cultura.VentanaLeyes;
+import com.example.iniciosesin.interfaces_cultura.datos_culturasorda.DatosHistoria;
+import com.example.iniciosesin.interfaces_cultura.datos_culturasorda.DatosLeyes;
+import com.example.iniciosesin.interfaces_cultura.datos_culturasorda.Leyes;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -86,7 +92,9 @@ public class CulturaSorda extends Fragment{
         cardLeyes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "Prueba de click en leyes front", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(getActivity().getApplicationContext(), VentanaLeyes.class);
+                i.putExtra("clickEvent", "Leyes");
+                startActivity(i);
                 /*interfaceComunicacionFragments.iniciarLeyes();*/
             }
         });
@@ -94,7 +102,9 @@ public class CulturaSorda extends Fragment{
         cardLS.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "Prueba de click en lenguasenas front", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(getActivity().getApplicationContext(), VentanaLeyes.class);
+                i.putExtra("clickEvent", "LS");
+                startActivity(i);
                /* interfaceComunicacionFragments.iniciarLS();*/
             }
         });
@@ -102,7 +112,7 @@ public class CulturaSorda extends Fragment{
         cardAprenderMas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "Prueba de click en aprendermas front", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Espere actualizaciones", Toast.LENGTH_SHORT).show();
                 /*interfaceComunicacionFragments.iniciarAprenderMas();*/
             }
         });
@@ -118,6 +128,18 @@ public class CulturaSorda extends Fragment{
             interfaceComunicacionFragments= (ComunicacionFragments) actividad;
         }
     }*/
+
+    public static ArrayList<Leyes> getLeyes (){
+        ArrayList<Leyes> arrayLeyes;
+        arrayLeyes = DatosLeyes.getLaws();
+        return arrayLeyes;
+    }
+
+    public static ArrayList<Leyes> getHistoria (){
+        ArrayList<Leyes> arrayHistoria;
+        arrayHistoria = DatosHistoria.getHistory();
+        return arrayHistoria;
+    }
 
 
 }
