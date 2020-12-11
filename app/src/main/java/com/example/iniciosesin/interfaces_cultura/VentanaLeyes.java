@@ -23,65 +23,59 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class VentanaLeyes extends AppCompatActivity {
-        ListView listView;
-        static ArrayList<Leyes> arraylist;
-        static ArrayList<String> arraylist2;
-        String origin;
+    ListView listView;
+    static ArrayList<Leyes> arraylist;
+    static ArrayList<String> arraylist2;
+    String origin;
 
-        @Override
-        protected void onCreate (Bundle savedInstaceState){
-                super.onCreate (savedInstaceState);
-                setContentView(R.layout.fragment_ventana_leyes);
-                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+    @Override
+    protected void onCreate(Bundle savedInstaceState) {
+        super.onCreate(savedInstaceState);
+        setContentView(R.layout.fragment_ventana_leyes);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-                listView=(ListView)findViewById(R.id.listview);
+        listView = (ListView) findViewById(R.id.listview);
 
-                recibirClikEvent();
+        recibirClikEvent();
 
-                if(origin.equals("Leyes")){
-                        arraylist = CulturaSorda.getLeyes();
-                }else{
-                        arraylist = CulturaSorda.getHistoria();
-                }
-
-                arraylist2= makeListArray(arraylist);
-                ArrayAdapter arrayAdapter=new ArrayAdapter(this, android.R.layout.simple_list_item_1,arraylist2);
-                listView.setAdapter(arrayAdapter);
-
-                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                                Intent intent = new Intent(VentanaLeyes.this, PopUpListas.class);
-                                intent.putExtra("position", position);
-                                intent.putParcelableArrayListExtra("arraylist", (ArrayList<? extends Parcelable>) arraylist);
-                                startActivity(intent);
-
-
-                        }
-                });
+        if (origin.equals("Leyes")) {
+            arraylist = CulturaSorda.getLeyes();
+        } else {
+            arraylist = CulturaSorda.getHistoria();
         }
 
-        public static ArrayList<String> makeListArray(ArrayList<Leyes> infoLeyes){
-                ArrayList<String> listLeyes = new ArrayList<>();
+        arraylist2 = makeListArray(arraylist);
+        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, arraylist2);
+        listView.setAdapter(arrayAdapter);
 
-                for (int i=0; i<infoLeyes.size(); i++){
-                        listLeyes.add(infoLeyes.get(i).getName());
-                }
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                Intent intent = new Intent(VentanaLeyes.this, PopUpListas.class);
+                intent.putExtra("position", position);
+                intent.putParcelableArrayListExtra("arraylist", (ArrayList<? extends Parcelable>) arraylist);
+                startActivity(intent);
 
-                return listLeyes;
+
+            }
+        });
+    }
+
+    public static ArrayList<String> makeListArray(ArrayList<Leyes> infoLeyes) {
+        ArrayList<String> listLeyes = new ArrayList<>();
+
+        for (int i = 0; i < infoLeyes.size(); i++) {
+            listLeyes.add(infoLeyes.get(i).getName());
         }
 
-
-        public void recibirClikEvent(){
-                Intent extras = getIntent();
-                origin  = extras.getStringExtra("clickEvent");
-        }
+        return listLeyes;
+    }
 
 
-
-
-
-
+    public void recibirClikEvent() {
+        Intent extras = getIntent();
+        origin = extras.getStringExtra("clickEvent");
+    }
 
 
 }

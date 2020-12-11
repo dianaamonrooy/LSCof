@@ -9,6 +9,7 @@
     <string name="aprende">Aprende</string>
     <string name="practica">Practica</string>
     <string name="title_advanced_path">Advanced: Like a Path</string>
+    <string name="references">Todos los videos utilizados en esta aplicación fueron desarrollados por "INSOR EDUCATIVO" y se escuentran bajo una licencia de Creative Commons Reconocimiento-NoComercial-SinObraDerivada 4.0 Internacional. Para conocer más visita: <a href="http://educativo.insor.gov.co/">este enlace</a></string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

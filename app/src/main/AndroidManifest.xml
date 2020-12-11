@@ -12,6 +12,9 @@
         android:roundIcon="@mipmap/logoapp"
         android:supportsRtl="true"
         android:theme="@style/Theme.InicioSesión">
+        <activity
+            android:name=".popUps.PopUpShowReferences"
+            android:theme="@style/Theme.InicioSesión.popMe"></activity>
         <activity android:name=".actividades.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -47,9 +50,7 @@
         <activity android:name=".NoSeUsan.PaginaPrincipalUsuario" />
         <activity android:name=".actividades.SignUp" />
         <activity android:name=".actividades.LogIn" />
-        <activity android:name=".actividades.MainActivity">
-
-        </activity>
+        <activity android:name=".actividades.MainActivity"></activity>
     </application>
 
 </manifest>

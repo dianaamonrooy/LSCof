@@ -134,7 +134,22 @@ public class LogIn extends AppCompatActivity {
         logInDate = new Date();   // given date
         Calendar calendar = GregorianCalendar.getInstance(); // creates a new calendar instance
         calendar.setTime(logInDate);
-        String hour = calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE) + ":" + calendar.get(Calendar.SECOND);
+        String hour;
+        if (Integer.toString(calendar.get(Calendar.HOUR_OF_DAY)).length()==1){
+            hour="0"+calendar.get(Calendar.HOUR_OF_DAY);
+        }else {
+            hour = ""+calendar.get(Calendar.HOUR_OF_DAY);
+        }
+        if (Integer.toString(calendar.get(Calendar.MINUTE)).length()==1){
+            hour+=":0"+calendar.get(Calendar.MINUTE);
+        }else {
+            hour+= ":"+calendar.get(Calendar.MINUTE);
+        }
+        if (Integer.toString(calendar.get(Calendar.SECOND)).length()==1){
+            hour+=":0"+calendar.get(Calendar.SECOND);
+        }else {
+            hour+= ":"+calendar.get(Calendar.SECOND);
+        }
 
         mAuth = FirebaseAuth.getInstance();
         myRef = database.getReference().child(mAuth.getCurrentUser().getUid().toString());

@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:text="Bienvenid@ a ...."
+        android:text="Bienvenid@ a\nEnSeña"
         android:textColor="@color/black"
         android:textSize="30sp"
         android:textStyle="bold|italic"

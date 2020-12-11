@@ -14,11 +14,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.iniciosesin.R;
 import com.example.iniciosesin.actividades.MainActivity;
+import com.example.iniciosesin.popUps.PopUpShowReferences;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -62,6 +64,7 @@ public class UserInfo extends Fragment {
     private ProgressBar progressBar;
     private int progresoNum;
     private Button press;
+    private ImageView info;
 
     private View vista;
 
@@ -111,6 +114,7 @@ public class UserInfo extends Fragment {
         progressBar = vista.findViewById(R.id.progressBar);
         //press = vista.findViewById(R.id.pressButton);
         nivelTextView = vista.findViewById(R.id.nivel);
+        info = vista.findViewById(R.id.infoReferencias);
 
 
         //progressBar.setMax(100);
@@ -135,9 +139,16 @@ public class UserInfo extends Fragment {
 
 
         logOut = vista.findViewById(R.id.logOutUser);
-        PushDownAnim.setPushDownAnimTo(logOut).setScale(PushDownAnim.MODE_SCALE, 0.89f).setOnClickListener(new View.OnClickListener() {
+        PushDownAnim.setPushDownAnimTo(logOut,info).setScale(PushDownAnim.MODE_SCALE, 0.89f).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+            }
+        });
+        info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity().getApplicationContext(), PopUpShowReferences.class));
 
             }
         });
