@@ -4,9 +4,9 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Leyes implements Parcelable {
-    private static String name;
-    private static String description;
-    private static String linkInfo;
+    private String name;
+    private String description;
+    private String linkInfo;
 
     protected Leyes(Parcel in) {
         name = in.readString();

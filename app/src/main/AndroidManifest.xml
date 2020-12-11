@@ -12,11 +12,18 @@
         android:roundIcon="@mipmap/logoapp"
         android:supportsRtl="true"
         android:theme="@style/Theme.InicioSesión">
-        <activity android:name=".Practica.Parejas"></activity>
+        <activity android:name=".actividades.SplashScreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Practica.Parejas" />
         <activity
             android:name=".Practica.Palabra_videos"
             android:excludeFromRecents="true"
-            android:taskAffinity=".actividades.TabbedActivity"></activity>
+            android:taskAffinity=".actividades.TabbedActivity" />
         <activity
             android:name=".Practica.Video_palabras"
             android:excludeFromRecents="true"
@@ -25,9 +32,10 @@
         <activity android:name=".Aprende.BotonesVideos" />
         <activity android:name=".NoSeUsan.BasesSwipe.PageChanger" /> <!-- android:theme="@style/Theme.InicioSesión.NoBar" -->
         <activity android:name=".NoSeUsan.BasesSwipe.DetailActivity" />
-        <activity android:name=".interfaces_cultura.VentanaLeyes"/>
-        <activity android:name=".interfaces_cultura.PopUpListas"
-            android:theme="@style/Theme.InicioSesión.popMe"/>
+        <activity android:name=".interfaces_cultura.VentanaLeyes" />
+        <activity
+            android:name=".interfaces_cultura.PopUpListas"
+            android:theme="@style/Theme.InicioSesión.popMe" />
         <activity
             android:name=".popUps.PopUpShowVideos"
             android:theme="@style/Theme.InicioSesión.popMe" />
@@ -40,11 +48,7 @@
         <activity android:name=".actividades.SignUp" />
         <activity android:name=".actividades.LogIn" />
         <activity android:name=".actividades.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

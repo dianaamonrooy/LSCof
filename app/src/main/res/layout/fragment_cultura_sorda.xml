@@ -10,9 +10,9 @@
     <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="44dp"
+        android:layout_height="60dp"
         android:gravity="center_horizontal"
-        android:text="Cultura Sorda"
+        android:text="\nCULTURA SORDA"
         android:textSize="24sp" />
 
     <ScrollView
@@ -24,61 +24,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/aprendemas"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_margin="16dp"
-                app:cardBackgroundColor="#DBAE9E"
-                app:cardCornerRadius="20dp">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="180dp"
-                        android:layout_height="match_parent"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_gravity="left"
-                        android:layout_marginEnd="190dp"
-                        android:layout_marginRight="190dp"
-                        android:src="@drawable/libro1" />
-
-                    <TextView
-                        android:layout_width="180dp"
-                        android:layout_height="50dp"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginStart="-200dp"
-                        android:layout_marginLeft="-200dp"
-                        android:layout_marginEnd="-2dp"
-                        android:layout_marginRight="-2dp"
-                        android:text="\nAprende más"
-                        android:textColor="#000000"
-                        android:textSize="20sp"
-                        android:textStyle="italic" />
-
-                    <TextView
-                        android:layout_width="179dp"
-                        android:layout_height="150dp"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_alignParentBottom="true"
-                        android:layout_gravity="bottom"
-                        android:layout_marginEnd="0dp"
-                        android:layout_marginRight="0dp"
-                        android:layout_marginBottom="-1dp"
-                        android:textColor="#575656"
-                        android:text="\n\nSi quieres reforzar tu aprendizaje, entra aquí." />
-
-
-                </RelativeLayout>
-
-            </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
                 android:id="@+id/signlanguage"
                 android:layout_width="match_parent"
@@ -97,7 +42,7 @@
                         android:layout_height="match_parent"
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentRight="true"
-                        android:layout_gravity="left"
+                        android:layout_gravity="start"
                         android:layout_marginEnd="191dp"
                         android:layout_marginRight="191dp"
                         android:src="@drawable/lenguasenas1" />
@@ -127,7 +72,6 @@
                         android:layout_marginEnd="0dp"
                         android:layout_marginRight="0dp"
                         android:layout_marginBottom="-1dp"
-                        android:textColor="#575656"
                         android:text="\n¡Un poco de historia!
                         \nNunca está de más saber un poco del proceso de
                         desarrollo de esta lengua"/>
@@ -154,7 +98,7 @@
                     android:layout_height="match_parent"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
-                    android:layout_gravity="left"
+                    android:layout_gravity="start"
                     android:layout_marginEnd="191dp"
                     android:layout_marginRight="191dp"
                     android:src="@drawable/mazo" />
@@ -184,7 +128,6 @@
                     android:layout_marginEnd="0dp"
                     android:layout_marginRight="0dp"
                     android:layout_marginBottom="-1dp"
-                    android:textColor="#575656"
                     android:text="\nAprende un poco de las leyes que existen en
                     Colombia para velar por los
                     derechos de las personas con discapacidad auditiva"/>
