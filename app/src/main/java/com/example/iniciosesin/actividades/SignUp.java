@@ -22,8 +22,10 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class SignUp extends AppCompatActivity {
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -121,7 +123,13 @@ public class SignUp extends AppCompatActivity {
 
     public void writeDatabase() {
         Date logInDate = Calendar.getInstance().getTime();
-        User usuario = new User(nombre.getText().toString().trim(), apellidos.getText().toString().trim(), mAuth.getUid().toString(), mAuth.getCurrentUser().getEmail(), logInDate.toString(), "location", "aprende_practica", "url",0,1);
+        String date = new SimpleDateFormat("MM-dd-yyyy").format(logInDate);
+        logInDate = new Date();   // given date
+        Calendar calendar = GregorianCalendar.getInstance(); // creates a new calendar instance
+        calendar.setTime(logInDate);
+        String hour = calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE) + ":" + calendar.get(Calendar.SECOND);
+
+        User usuario = new User(nombre.getText().toString().trim(), apellidos.getText().toString().trim(), mAuth.getUid().toString(), mAuth.getCurrentUser().getEmail(), date+"\n"+hour, "location", "aprende_practica", "url",0,1);
         myRef = database.getReference(usuario.getId());
         myRef.setValue(usuario);
 

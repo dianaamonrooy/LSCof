@@ -27,8 +27,10 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 //comentario de prueba
 public class LogIn extends AppCompatActivity {
@@ -60,7 +62,7 @@ public class LogIn extends AppCompatActivity {
         emailEdit = findViewById(R.id.email_log_in);
         passwordEdit = findViewById(R.id.password_log_in);
         if (mAuth.getCurrentUser() != null) {
-            writeDatabase();
+            writeDatabase2();
             startActivity(new Intent(getApplicationContext(), TabbedActivity.class));
             finish();
 
@@ -86,12 +88,15 @@ public class LogIn extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
+                            getNombres_Apellidos();
+                            String nom = nombre;
+                            String ape = apellidos;
                             Log.d("ÉXITO", "signInWithEmail:success");
                             Toast.makeText(getApplicationContext(), "Usuario ingresado con éxito.",
                                     Toast.LENGTH_SHORT).show();
                             FirebaseUser user = mAuth.getCurrentUser();
                             updateUI(user);
-                            writeDatabase();
+                            writeDatabase2();
                             Intent i = new Intent(getApplicationContext(), TabbedActivity.class);
                             startActivity(i);
                             finish();
@@ -116,14 +121,33 @@ public class LogIn extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Ingresa los espacios vacíos",
                     Toast.LENGTH_SHORT).show();
         } else {
+
             this.signInWithEmailAndPassword(email, password);
         }
     }
 
+    public void writeDatabase2() {
+        Date logInDate = Calendar.getInstance().getTime();
+        String date = new SimpleDateFormat("MM-dd-yyyy").format(logInDate);
+        logInDate = new Date();   // given date
+        Calendar calendar = GregorianCalendar.getInstance(); // creates a new calendar instance
+        calendar.setTime(logInDate);
+        String hour = calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE) + ":" + calendar.get(Calendar.SECOND);
+
+        mAuth = FirebaseAuth.getInstance();
+        myRef = database.getReference().child(mAuth.getCurrentUser().getUid().toString());
+        myRef.child("date").setValue(date+"\n"+hour);
+
+    }
+
     public void writeDatabase() {
         Date logInDate = Calendar.getInstance().getTime();
+        String date = new SimpleDateFormat("MM-dd-yyyy").format(logInDate);
+
         getNombres_Apellidos();
-        User usuario = new User(nombre, apellidos, mAuth.getUid().toString(), mAuth.getCurrentUser().getEmail(), logInDate.toString(), "location", "aprende_practica", "url",0,1);
+        String nom = nombre;
+        String ape = apellidos;
+        User usuario = new User(nombre, apellidos, mAuth.getUid().toString(), mAuth.getCurrentUser().getEmail(), date, "location", "aprende_practica", "url", 0, 1);
         myRef = database.getReference(usuario.getId());
         myRef.setValue(usuario);
 
@@ -139,6 +163,8 @@ public class LogIn extends AppCompatActivity {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 if (dataSnapshot.exists()) {
+                    System.out.println("\n*\n*\n*\n" + dataSnapshot.child("nombre").getValue().toString() + "\n*\n*\n*\n");
+                    String nombr = dataSnapshot.child("nombre").getValue().toString();
                     nombre = dataSnapshot.child("nombre").getValue().toString();
                     apellidos = dataSnapshot.child("apellidos").getValue().toString();
                 }

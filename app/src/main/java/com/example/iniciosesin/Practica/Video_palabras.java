@@ -48,12 +48,12 @@ public class Video_palabras extends AppCompatActivity {
 
     private VideoView video;
     private List<String> options = new ArrayList<>();
-    private Button rightOptionButton;
-    private List<Button> wrongOptionButtons = new ArrayList<>();
-    private Button boton1;
-    private Button boton2;
-    private Button boton3;
-    private Button boton4;
+    private TextView rightOptionButton;
+    private List<TextView> wrongOptionButtons = new ArrayList<>();
+    private TextView boton1;
+    private TextView boton2;
+    private TextView boton3;
+    private TextView boton4;
     private ImageView exit;
     private ConstraintLayout constraintLayout;
 
@@ -158,8 +158,8 @@ public class Video_palabras extends AppCompatActivity {
     }
 
     private void setTextToButtons(List<String> opciones) {
-        List<Button> botones = new ArrayList<>();
-        HashMap<Button, String> diccBotonesNombres = new HashMap<>();
+        List<TextView> botones = new ArrayList<>();
+        HashMap<TextView, String> diccBotonesNombres = new HashMap<>();
 
         botones.add(boton1);
         botones.add(boton2);
@@ -172,15 +172,15 @@ public class Video_palabras extends AppCompatActivity {
         Object[] arrayBotones = diccBotonesNombres.keySet().toArray();
         for (Object boton : arrayBotones) {
             if (diccBotonesNombres.get(boton) == opciones.get(0)) {
-                rightOptionButton = (Button) boton;
+                rightOptionButton = (TextView) boton;
             } else {
-                wrongOptionButtons.add((Button) boton);
+                wrongOptionButtons.add((TextView) boton);
             }
         }
     }
 
-    private void randomButton(List<Button> botones, HashMap diccBotonesNombres, String optionName) {
-        Button boton = botones.get((int) (Math.random() * (botones.size())));
+    private void randomButton(List<TextView> botones, HashMap diccBotonesNombres, String optionName) {
+        TextView boton = botones.get((int) (Math.random() * (botones.size())));
         while (!diccBotonesNombres.isEmpty() && diccBotonesNombres.containsKey(boton)) {
             boton = botones.get((int) (Math.random() * (botones.size())));
         }
@@ -274,7 +274,7 @@ public class Video_palabras extends AppCompatActivity {
 
                                                 }
                                             });
-                                            for (Button boton : wrongOptionButtons) {
+                                            for (TextView boton : wrongOptionButtons) {
                                                 addAnimation(boton);
                                                 boton.setOnClickListener(new View.OnClickListener() {
                                                     @Override
