@@ -15,7 +15,6 @@ import android.widget.Toast;
 
 import com.example.iniciosesin.Aprende.BotonesVideos;
 import com.example.iniciosesin.R;
-import com.example.iniciosesin.interfaces_cultura.ComunicacionFragments;
 import com.example.iniciosesin.interfaces_cultura.VentanaLeyes;
 import com.example.iniciosesin.interfaces_cultura.datos_culturasorda.DatosHistoria;
 import com.example.iniciosesin.interfaces_cultura.datos_culturasorda.DatosLeyes;
@@ -46,7 +45,6 @@ public class CulturaSorda extends Fragment{
     View vista;
     Activity actividad;
     CardView cardLeyes, cardLS, cardAprenderMas;
-    ComunicacionFragments interfaceComunicacionFragments;
 
     public CulturaSorda() {
         // Required empty public constructor
@@ -87,7 +85,6 @@ public class CulturaSorda extends Fragment{
 
         cardLeyes = vista.findViewById(R.id.leyes);
         cardLS = vista.findViewById(R.id.signlanguage);
-        cardAprenderMas = vista.findViewById(R.id.aprendemas);
 
         cardLeyes.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,7 +92,6 @@ public class CulturaSorda extends Fragment{
                 Intent i = new Intent(getActivity().getApplicationContext(), VentanaLeyes.class);
                 i.putExtra("clickEvent", "Leyes");
                 startActivity(i);
-                /*interfaceComunicacionFragments.iniciarLeyes();*/
             }
         });
 
@@ -105,37 +101,19 @@ public class CulturaSorda extends Fragment{
                 Intent i = new Intent(getActivity().getApplicationContext(), VentanaLeyes.class);
                 i.putExtra("clickEvent", "LS");
                 startActivity(i);
-               /* interfaceComunicacionFragments.iniciarLS();*/
-            }
-        });
-
-        cardAprenderMas.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getContext(), "Espere actualizaciones", Toast.LENGTH_SHORT).show();
-                /*interfaceComunicacionFragments.iniciarAprenderMas();*/
             }
         });
 
         return vista;
     }
 
-/*    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof Activity){
-            actividad = (Activity) context;
-            interfaceComunicacionFragments= (ComunicacionFragments) actividad;
-        }
-    }*/
-
-    public static ArrayList<Leyes> getLeyes (){
+    public static ArrayList<Leyes> getLeyes(){
         ArrayList<Leyes> arrayLeyes;
         arrayLeyes = DatosLeyes.getLaws();
         return arrayLeyes;
     }
 
-    public static ArrayList<Leyes> getHistoria (){
+    public static ArrayList<Leyes> getHistoria(){
         ArrayList<Leyes> arrayHistoria;
         arrayHistoria = DatosHistoria.getHistory();
         return arrayHistoria;
