@@ -11,6 +11,7 @@ public class DatosLeyes {
                 "directamente o mediante convenio, acciones pedagógicas y terapéuticas que permitan el proceso de integración académica y social " +
                 "de dichos educandos. El Gobierno Nacional expedirá la reglamentación correspondiente.",
                 "https://www.mineducacion.gov.co/1621/articles-85906_archivo_pdf.pdf");
+
         Leyes ley2 = new Leyes("Ley 1618 de 2013","Esta ley tiene por objetivo garantizar y asegurar el ejercicio efectivo de " +
                 "los derechos de las personas con discapacidad, mediante la adopción de medidas de inclusión, de acciones afirmativas, de ajustes " +
                 "razonables y de la eliminación de toda forma de discriminación por razón de discapacidad. El gran avance de esta ley está en el hecho " +
@@ -21,6 +22,7 @@ public class DatosLeyes {
                 "discapacidad, el acompañamiento a las familias, el derecho a la habilitación y rehabilitación, a la salud, a la educación, a la protección social, " +
                 "al trabajo, al acceso y accesibilidad, al transporte, a la vivienda, a la cultura y al acceso a la justicia, entre otros.",
                 "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/PS/documento-balance-1618-2013-240517.pdf");
+
         Leyes ley3 = new Leyes("Ley 324 de 1996\nPor el cual se crean algunas normas a favor de la población sorda.",
                 "Articulo 3\nEl Estado auspiciará la investigación, la enseñanza y la difusión de la Lengua Manual Colombiana.\n\n" +
                         "Articulo 4\nEl Estado garantizará traducción a la Lengua Manual Colombiana de Programas de Interés General, Cultural, Recreativo, " +
@@ -31,6 +33,7 @@ public class DatosLeyes {
                         "esta población, con el fin de asegurar la atención especializada para la integración de éstos alumnos en igualdad de condiciones.",
                 "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=349#:~:text=%2D%20Declarado%20Exequible%20por%20Sentencia%20Corte,colombianos%20les%20confiere%20la%20Constituci%C3%B3n.\n" +
                 "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=1203#1");
+
         Leyes ley4 = new Leyes("Decreto 2106 de 2013\nPor el cual se modifica la estructura del Instituto Nacional para Sordos (Insor).",
                 "Articulo 3: Funciones Generales\n1. Asesorar a los entes del Gobierno Nacional y Territorial y al sector privado en la formulación de planes, " +
                         "programas y proyectos para el desarrollo integral de la población sorda colombiana. \n" +
@@ -53,6 +56,7 @@ public class DatosLeyes {
                         "para el cumplimiento de sus objetivos institucionales. \n" +
                         "12. Mantener actualizado un portafolio de servicios que permita divulgar la oferta de la Institución. \n" +
                         "13. Las demás funciones que le sean asignadas por la ley","http://www.suin-juriscol.gov.co/viewDocument.asp?ruta=Decretos/1400529");
+
         Leyes ley5 = new Leyes("Ley 982 de 2005\nNormas para la equiparación de oportunidades.","De la Educación Formal y No Formal\n" +
                 "Artículo 9\nEl Gobierno Nacional y los gobiernos territoriales, deberán\n" +
                 "respetar las diferencias lingüísticas y comunicativas en las prácticas\n" +
@@ -75,6 +79,7 @@ public class DatosLeyes {
         laws.add(ley3);
         laws.add(ley4);
         laws.add(ley5);
+        
         return laws;
     }
 }
