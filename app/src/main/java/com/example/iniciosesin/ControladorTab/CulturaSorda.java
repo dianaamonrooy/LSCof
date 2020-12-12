@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.example.iniciosesin.Aprende.BotonesVideos;
 import com.example.iniciosesin.R;
 import com.example.iniciosesin.interfaces_cultura.VentanaLeyes;
+import com.example.iniciosesin.interfaces_cultura.VentanaLeyes2;
 import com.example.iniciosesin.interfaces_cultura.datos_culturasorda.DatosHistoria;
 import com.example.iniciosesin.interfaces_cultura.datos_culturasorda.DatosLeyes;
 import com.example.iniciosesin.interfaces_cultura.datos_culturasorda.Leyes;
@@ -89,7 +90,7 @@ public class CulturaSorda extends Fragment{
         cardLeyes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getActivity().getApplicationContext(), VentanaLeyes.class);
+                Intent i = new Intent(getActivity().getApplicationContext(), VentanaLeyes2.class);
                 i.putExtra("clickEvent", "Leyes");
                 startActivity(i);
             }
@@ -98,7 +99,7 @@ public class CulturaSorda extends Fragment{
         cardLS.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getActivity().getApplicationContext(), VentanaLeyes.class);
+                Intent i = new Intent(getActivity().getApplicationContext(), VentanaLeyes2.class);
                 i.putExtra("clickEvent", "LS");
                 startActivity(i);
             }

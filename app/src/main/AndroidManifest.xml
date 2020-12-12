@@ -12,9 +12,10 @@
         android:roundIcon="@mipmap/logoapp"
         android:supportsRtl="true"
         android:theme="@style/Theme.InicioSesión">
+        <activity android:name=".Prueba.Empty"></activity>
         <activity
             android:name=".popUps.PopUpShowReferences"
-            android:theme="@style/Theme.InicioSesión.popMe"></activity>
+            android:theme="@style/Theme.InicioSesión.popMe" />
         <activity android:name=".actividades.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -36,13 +37,13 @@
         <activity android:name=".NoSeUsan.BasesSwipe.PageChanger" /> <!-- android:theme="@style/Theme.InicioSesión.NoBar" -->
         <activity android:name=".NoSeUsan.BasesSwipe.DetailActivity" />
         <activity android:name=".interfaces_cultura.VentanaLeyes" />
+        <activity android:name=".interfaces_cultura.VentanaLeyes2" />
         <activity
             android:name=".interfaces_cultura.PopUpListas"
             android:theme="@style/Theme.InicioSesión.popMe" />
         <activity
             android:name=".popUps.PopUpShowVideos"
             android:theme="@style/Theme.InicioSesión.popMe" />
-        <activity android:name=".Trial" />
         <activity android:name=".actividades.TabbedActivity" />
         <activity android:name=".actividades.Verbos" />
         <activity android:name=".actividades.Aprende" />
@@ -50,7 +51,7 @@
         <activity android:name=".NoSeUsan.PaginaPrincipalUsuario" />
         <activity android:name=".actividades.SignUp" />
         <activity android:name=".actividades.LogIn" />
-        <activity android:name=".actividades.MainActivity"></activity>
+        <activity android:name=".actividades.MainActivity" />
     </application>
 
 </manifest>

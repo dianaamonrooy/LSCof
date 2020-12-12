@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">LSC</string>
+    <string name="app_name">EnSeña</string>
     <string name="iniciar_sesion">Inicio de Sesión</string>
     <string name="registro">Registro</string>
     <string name="entry_email">Escriba su dirección de correo electrónico</string>

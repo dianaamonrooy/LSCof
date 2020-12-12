@@ -6,23 +6,14 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.Space;
-import android.widget.TableLayout;
-import android.widget.TableRow;
 
 import com.example.iniciosesin.Aprende.Adapter;
 import com.example.iniciosesin.Aprende.Model;
@@ -36,16 +27,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.ListResult;
 import com.google.firebase.storage.StorageReference;
-import com.takusemba.spotlight.CustomTarget;
-import com.takusemba.spotlight.OnSpotlightEndedListener;
-import com.takusemba.spotlight.OnSpotlightStartedListener;
-import com.takusemba.spotlight.Spotlight;
 import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import xyz.hanks.library.bang.SmallBangView;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -72,7 +59,7 @@ public class LSC extends Fragment {
     private int blue = Color.parseColor("#0F80AA");
 
     private Drawable imagen;
-    private SmallBangView smallBangView;
+
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -172,8 +159,8 @@ public class LSC extends Fragment {
                             viewPager.setBackgroundColor(colors[colors.length - 1]);
                         }*/
 
-                        Button aprende = vista.findViewById(R.id.aprende_lsc);
-                        Button practica = vista.findViewById(R.id.practica_lsc);
+                        Button aprende = vista.findViewById(R.id.aprende_ventanaLeyes2);
+                        Button practica = vista.findViewById(R.id.practica_ventanaLeyes2);
                         PushDownAnim.setPushDownAnimTo(aprende, practica).setScale(PushDownAnim.MODE_SCALE, 0.89f).setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
@@ -224,140 +211,6 @@ public class LSC extends Fragment {
         });
         return vista;
     }
-
-    /*public void showFolders(ListResult listResult, TableLayout tableLayout, View vista) {
-
-        int i = 1;
-        for (StorageReference carpeta : listResult.getPrefixes()) {
-            Space espacio = new Space(getActivity().getApplicationContext());
-            espacio.setId(i + 1000);
-            espacio.setMinimumHeight(5);
-            espacio.setMinimumWidth(10);
-            carpetas.add(carpeta.getName());
-            Button botonCarpeta = new Button(getActivity().getApplicationContext());
-            botonCarpeta.setLayoutParams(new TableRow.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-            botonCarpeta.setId(i + 100);
-            botonCarpeta.setBackgroundColor(Color.TRANSPARENT);
-            botonCarpeta.setTextColor(Color.parseColor("#0F80AA"));
-            botonCarpeta.setText(carpeta.getName());
-            setButtonIcon(botonCarpeta, carpeta);
-            botonCarpeta.setTextColor(getResources().getColor(R.color.purple_200));
-
-
-            System.out.println("**********" + botonCarpeta.getText());
-            botonCarpeta.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-
-                    myAuth.getCurrentUser();
-                    myRef = database.getReference().child(myAuth.getCurrentUser().getUid().toString());
-                    myRef.child("location").setValue(botonCarpeta.getText());
-                    ConstraintLayout constraintLayout = vista2.findViewById(R.id.layout_aprede_practica);
-                    CustomTarget thirdTarget =
-                            new CustomTarget.Builder(getActivity()).setPoint(botonCarpeta)
-                                    .setRadius(130f)
-                                    .setView(R.layout.layout_target)
-                                    .build();
-
-                    Spotlight.with(getActivity())
-                            .setDuration(500L)
-                            .setAnimation(new DecelerateInterpolator(2f))
-                            .setTargets(thirdTarget)
-                            .setOnSpotlightStartedListener(new OnSpotlightStartedListener() {
-                                @Override
-                                public void onStarted() {
-                                    LinearLayout linearLayout = new LinearLayout(getActivity().getApplicationContext());
-                                    Button aprende_boton = vista2.findViewById(R.id.aprende_boton);
-                                    Button practica_boton = vista2.findViewById(R.id.practica_boton);
-
-                                    ConstraintLayout.LayoutParams paramsAprende = (ConstraintLayout.LayoutParams) aprende_boton.getLayoutParams();
-                                    paramsAprende.leftMargin = (int) botonCarpeta.getX() - 20;
-                                    paramsAprende.topMargin = (int) botonCarpeta.getY() - 20;
-
-                                    ConstraintLayout.LayoutParams paramsPractica = (ConstraintLayout.LayoutParams) practica_boton.getLayoutParams();
-                                    paramsPractica.leftMargin = (int) botonCarpeta.getX() - 20;
-                                    paramsPractica.topMargin = (int) botonCarpeta.getY() - 40;
-
-
-                                    aprende_boton.setLayoutParams(paramsAprende);
-
-                                    practica_boton.setLayoutParams(paramsPractica);
-                                    Animation scaleUp, scaleDown;
-                                    scaleUp = AnimationUtils.loadAnimation(getActivity(), R.anim.scale_up);
-                                    scaleDown = AnimationUtils.loadAnimation(getActivity(), R.anim.scale_up);
-                                    PushDownAnim.setPushDownAnimTo(aprende_boton,practica_boton).setScale(PushDownAnim.MODE_SCALE,0.89f).setOnTouchEvent(new View.OnTouchListener() {
-                                        @Override
-                                        public boolean onTouch(View v, MotionEvent event) {
-                                            return false;
-                                        }
-                                    });
-                                    aprende_boton.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-
-                                        }
-                                    });
-                                    aprende_boton.setOnTouchListener(new View.OnTouchListener() {
-                                        @Override
-                                        public boolean onTouch(View v, MotionEvent event) {
-                                            if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                                                aprende_boton.startAnimation(scaleUp);
-
-                                            } else if (event.getAction() == MotionEvent.ACTION_UP) {
-                                                aprende_boton.startAnimation(scaleDown);
-
-                                            }
-                                            return true;
-                                        }
-                                    });
-                                    practica_boton.setOnTouchListener(new View.OnTouchListener() {
-                                        @Override
-                                        public boolean onTouch(View v, MotionEvent event) {
-                                            if (event.getAction() == MotionEvent.ACTION_DOWN) {
-
-                                                practica_boton.startAnimation(scaleUp);
-                                            } else if (event.getAction() == MotionEvent.ACTION_UP) {
-
-                                                practica_boton.startAnimation(scaleDown);
-                                            }
-                                            return true;
-                                        }
-                                    });
-
-                                    //Toast.makeText(getActivity(), "spotlight is started", Toast.LENGTH_SHORT).show();
-
-                                }
-                            })
-                            .setOnSpotlightEndedListener(new OnSpotlightEndedListener() {
-                                @Override
-                                public void onEnded() {
-
-                                    //Toast.makeText(getActivity(), "spotlight is ended", Toast.LENGTH_SHORT).show();
-                                }
-                            })
-                            .start();
-
-                }
-            });
-            int accordingTableRow;
-            if (i % 3 != 0) {
-                accordingTableRow = i / 3 + 1;
-            } else {
-                accordingTableRow = i / 3;
-            }
-            TableRow chosenTableRow = (TableRow) vista.findViewById(accordingTableRow);
-            System.out.println(chosenTableRow.getId());
-            chosenTableRow.addView(botonCarpeta);
-            chosenTableRow.addView(espacio);
-            /*if (chosenTableRow.getChildCount() == 3) {
-                tableLayout.addView(chosenTableRow);
-            }
-
-            i++;
-
-        }
-    }*/
 
     public void setButtonIcon(Button boton, StorageReference carpeta) {
         switch (carpeta.getName().toLowerCase()) {

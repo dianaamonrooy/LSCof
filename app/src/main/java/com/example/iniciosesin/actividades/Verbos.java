@@ -40,10 +40,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.ListResult;
 import com.google.firebase.storage.StorageReference;
-import com.takusemba.spotlight.CustomTarget;
-import com.takusemba.spotlight.OnSpotlightEndedListener;
-import com.takusemba.spotlight.OnSpotlightStartedListener;
-import com.takusemba.spotlight.Spotlight;
+
 
 import java.util.ArrayList;
 

@@ -21,7 +21,7 @@ public class DatosHistoria {
         Leyes hist3 = new Leyes("En España","Pedro Ponce de León, monje benedictino del siglo XVI , se considera el primer " +
                 "maestro de sordos; en su comunidad se utilizaban las señas en actividades diarias.",
                 "https://revistas.pedagogica.edu.co/index.php/PYS/article/view/6242/5695");
-        Leyes hist4 = new Leyes("Reducción  de  las  letras  y  Arte para  enseñar  á  hablar  los  Mudos",
+        Leyes hist4 = new Leyes("Reducción de las letras y Arte para  enseñar a hablar a los  Mudos",
                 "Juan de Pablo Bonet - 1620\n" +
                         "considerado  como  el  primer  tratado  moderno de Fonética Logopedia, en el que se proponía un método  de  " +
                         "enseñanza oral de los sordos mediante el uso de señas alfabéticas configuradas un manualmente, divulgando " +
@@ -31,7 +31,7 @@ public class DatosHistoria {
                 "Creó la primera escuela pública para sordos (1760).\n" +
                 "Reconocio que los sordos eran capaces de comunicarse entre ellos mediante el uso de un sistema de gestos linguistico, " +
                 "sistema que describio y recopilo en lo que se considera un diccionario de señas parisina.","https://revistas.pedagogica.edu.co/index.php/PYS/article/view/6242/5695");
-        Leyes hist6 = new Leyes("Congreso de Milán ","1880\n" +
+        Leyes hist6 = new Leyes("Congreso de Milán","1880\n" +
                 "Un grupo de oyentes maestros de sordos decidieron excluir la lengua de signos de la enseñanza de los Sordos, y también impusieron que el objetivo principal " +
                 "de la escuela de Sordos debía ser enseñar el habla.\n" +
                 "Además de alcanzar mediocres resultados en el aprendizaje del habla, los niños de las escuelas oralistas tenían habilidades lectoras correspondientes a " +

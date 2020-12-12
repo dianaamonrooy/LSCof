@@ -40,14 +40,10 @@ dependencies {
     implementation 'com.google.firebase:firebase-storage:19.2.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     //added
-    implementation 'pub.hanks:smallbang:1.2.2' //no se usa
-    implementation 'com.ogaclejapan.arclayout:library:1.1.0@aar' //no se usa
-    implementation 'com.github.takusemba:spotlight:1.0.1'
+
     implementation( 'com.github.thekhaeng:pushdown-anim-click:1.1.1' ){
         exclude group: 'com.android.support'
     }
-    implementation 'com.mikhaellopez:circularimageview:4.2.0'//no se usa
-    implementation 'de.hdodenhof:circleimageview:3.1.0'// no se usa
     implementation "com.airbnb.android:lottie:3.5.0"
     implementation( 'com.github.thekhaeng:pushdown-anim-click:1.1.1' ){
         exclude group: 'com.android.support'
