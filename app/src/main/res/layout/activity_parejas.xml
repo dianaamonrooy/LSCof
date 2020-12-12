@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
 
     android:visibility="visible"
-    tools:context=".Practica.Parejas">
+    tools:context=".Logic.Practica.Parejas">
 
     <TableLayout
         android:layout_width="match_parent"

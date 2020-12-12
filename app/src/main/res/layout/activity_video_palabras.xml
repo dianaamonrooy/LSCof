@@ -5,7 +5,7 @@
     android:id="@+id/constraintLayoutVideoPalabras"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Practica.Video_palabras">
+    tools:context=".Logic.Practica.Video_palabras">
 
 
     <ImageView
