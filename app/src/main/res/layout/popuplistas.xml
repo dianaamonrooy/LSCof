@@ -12,7 +12,9 @@
             android:id="@+id/textpopup"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:autoLink="web">
+            android:autoLink="web"
+            android:textColorLink="@color/color2"
+            android:textColorHighlight="#00FFFFFF">
 
         </TextView>
 
